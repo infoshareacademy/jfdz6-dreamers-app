@@ -6,10 +6,12 @@ import {
 import {
   Navbar,
   Nav,
-  NavItem
+  NavItem,
+  Carousel
 } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import './App.css';
 
 import {
   LinkContainer
@@ -18,7 +20,7 @@ import {
 const AppNavbar = () => (
       <Router>
         <div>
-          <Navbar>
+          <Navbar inverse>
             <Navbar.Header>
               <Navbar.Brand>
                 <a href="/">Dreamers</a>
@@ -66,6 +68,32 @@ const AppNavbar = () => (
         <p>1 slajd - wydarzenie dnia</p>
         <p>2 slajd - wyszukiwarka</p>
         <p>3 slajd - moje wydarzenia</p>
+
+        <Carousel>
+          <Carousel.Item>
+            <img width={900} height={500} alt="900x500" src="../img/image-fest1.jpg" />
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img width={900} height={500} alt="900x500" src="/img/image-fest2.jpg" />
+            <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img width={900} height={500} alt="900x500" src="/img/image-fest3.jpg" />
+            <Carousel.Caption>
+              <h3>Third slide label</h3>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+
+
       </div>
     )
 
