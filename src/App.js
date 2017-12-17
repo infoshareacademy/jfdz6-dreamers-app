@@ -30,12 +30,22 @@ class App extends Component {
                                     </Navbar.Brand>
                                 </Navbar.Header>
                                 <Nav>
-                                    <LinkContainer exact to="/">
-                                        <NavItem>Home</NavItem>
+
+                                    <LinkContainer to="/eventofaday">
+                                        <NavItem>Wydarzenie dnia</NavItem>
                                     </LinkContainer>
 
-                                    <LinkContainer to="/about">
-                                        <NavItem>About</NavItem>
+
+                                    <LinkContainer to="/searchevents">
+                                        <NavItem>Wyszukiwarka</NavItem>
+                                    </LinkContainer>
+
+                                    <LinkContainer to="/myevents">
+                                        <NavItem>Moje wydarzenia</NavItem>
+                                    </LinkContainer>
+
+                                    <LinkContainer to="/logout">
+                                        <NavItem>Wyloguj</NavItem>
                                     </LinkContainer>
 
                                 </Nav>
@@ -44,7 +54,10 @@ class App extends Component {
                             <hr/>
 
                             <Route exact path="/" component={Home}/>
-                            <Route path="/about" component={About}/>
+                            <Route path="/eventofaday" component={EventOfADay}/>
+                            <Route path="/searchevents" component={SearchEvents}/>
+                            <Route path="/myevents" component={MyEvents}/>
+                            <Route path="/logout" component={Login}/>
 
                         </div>
                     </Router>
@@ -57,17 +70,41 @@ class App extends Component {
 
 const Home = () => (
     <div>
-        <h2>Home AWESO</h2>
+        <h2>Dreamers</h2>
+        <p>Karuzela, taka jak na stronie Dreamers</p>
+        <p>1 slajd - wydarzenie dnia</p>
+        <p>2 slajd - wyszukiwarka</p>
+        <p>3 slajd - moje wydarzenia</p>
     </div>
 )
 
-const About = () => (
+const EventOfADay = () => (
     <div>
-        <h2>About</h2>
-        <h1>Mwahahaha</h1>
-        <p>I know props</p>
-
+        <h2>Event of a day</h2>
+        <p> Wydarzenie dnia a dokładnym opisem, jak na stronie Bubble</p>
     </div>
 )
+
+const SearchEvents = () => (
+  <div>
+      <h2>Search Events</h2>
+      <p>Wyszukiwarka z filtrami</p>
+  </div>
+)
+
+
+const MyEvents = () => (
+  <div>
+      <h2>My events</h2>
+      <p>Układ jak na stronie wyszukiwarki wydarzeń (z filtrami), plus przycisk umożliwiający usunięcie wydarzenia z listy moich wydarzeń</p>
+  </div>
+)
+
+const Login = () => (
+  <div>
+      <h2>Logout</h2>
+  </div>
+)
+
 
 export default App;
