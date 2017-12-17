@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import {
     LinkContainer
 } from 'react-router-bootstrap'
+import SignInUp from "./SignInUp";
 
 class App extends Component {
     render() {
@@ -45,6 +46,7 @@ class App extends Component {
 
                             <Route exact path="/" component={Home}/>
                             <Route path="/about" component={About}/>
+                            <Route path="/sign-in-up" component={SignInUp}/>
 
                         </div>
                     </Router>
