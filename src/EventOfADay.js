@@ -6,7 +6,7 @@ import {
   Clearfix
 } from 'react-bootstrap'
 
-import './EventsOfADay.css'
+import './EventOfADay.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
@@ -19,9 +19,9 @@ class EventOfADay extends Component {
 
       <hr/>
       <h4>Nazwa wydarzenia</h4>
-      <Col  xs={12} sm={6} className="eventImage">
+      <Col  xs={12} sm={6} className="EventOfADay_image">
       </Col>
-      <Col  xs={12} sm={6} className="eventInfo">
+      <Col  xs={12} sm={6} className="EventOfADay_info">
         <p>Start: ???</p>
         <p>Koniec: ???</p>
         <p>Miejsce: ???</p>
