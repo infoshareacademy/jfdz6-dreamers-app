@@ -16,6 +16,8 @@ import {
     LinkContainer
 } from 'react-router-bootstrap'
 
+import EventOfADay from './EventOfADay'
+
 class App extends Component {
     render() {
         return (
@@ -69,20 +71,13 @@ class App extends Component {
 }
 
 const Home = () => (
-    <div>
-        <h2>Dreamers</h2>
-        <p>Karuzela, taka jak na stronie Dreamers</p>
-        <p>1 slajd - wydarzenie dnia</p>
-        <p>2 slajd - wyszukiwarka</p>
-        <p>3 slajd - moje wydarzenia</p>
-    </div>
-)
-
-const EventOfADay = () => (
-    <div>
-        <h2>Event of a day</h2>
-        <p> Wydarzenie dnia a dokładnym opisem, jak na stronie Bubble</p>
-    </div>
+  <div>
+      <h2>Dreamers</h2>
+      <p>Karuzela, taka jak na stronie Dreamers</p>
+      <p>1 slajd - wydarzenie dnia</p>
+      <p>2 slajd - wyszukiwarka</p>
+      <p>3 slajd - moje wydarzenia</p>
+  </div>
 )
 
 const SearchEvents = () => (
