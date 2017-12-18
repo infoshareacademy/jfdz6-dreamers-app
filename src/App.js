@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import {
     LinkContainer
 } from 'react-router-bootstrap'
+import Events from './Events'
 
 class App extends Component {
     render() {
@@ -34,6 +35,10 @@ class App extends Component {
                                         <NavItem>Home</NavItem>
                                     </LinkContainer>
 
+                                    <LinkContainer to="/events">
+                                        <NavItem>Events</NavItem>
+                                    </LinkContainer>
+
                                     <LinkContainer to="/about">
                                         <NavItem>About</NavItem>
                                     </LinkContainer>
@@ -44,6 +49,7 @@ class App extends Component {
                             <hr/>
 
                             <Route exact path="/" component={Home}/>
+                            <Route path="/events" component={Events}/>
                             <Route path="/about" component={About}/>
 
                         </div>
