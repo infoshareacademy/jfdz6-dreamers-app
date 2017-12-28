@@ -70,7 +70,7 @@ class Events extends React.Component {
                                     <p>{event.name}</p>
                                     <p>{getDateNode(event)}</p>
                                     <a href={checkIfUrlExist(event)}>
-                                        <img src={checkIfAttachmentExist(event)} title="Image"/>
+                                        <img src={checkIfAttachmentExist(event)} alt='nothing' title="Image"/>
                                     </a>
                                 </li>
                             )
