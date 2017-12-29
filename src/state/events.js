@@ -2,10 +2,13 @@ const GET_BEGIN = 'events/GET_BEGIN'
 const GET_SUCCESS = 'events/GET_SUCCESS'
 const GET_FAIL = 'events/GET_FAIL'
 
-export const getEvents = day => dispatch => {
+export const getEvents = ( dateFrom, dateTo ) => dispatch => {
    // let urltest = 'http://planer.info.pl/api/rest/events.json?start_date='+day+'&limit=12';
+    console.log('Od : ',dateFrom.toJSON().slice(0,10));
+    console.log('Do : ', dateTo.toJSON().slice(0,10));
+
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = 'http://planer.info.pl/api/rest/events.json'
+        targetUrl = 'http://planer.info.pl/api/rest/events.json?limit=15'
 
     dispatch({ type: GET_BEGIN })
     return fetch(
@@ -22,7 +25,9 @@ export const getEvents = day => dispatch => {
 const initialState = {
     data: null,
     getting: false,
-    error: null
+    error: null,
+    dateFrom: new Date(),
+    dateTo: new Date()
 }
 
 export default (state = initialState, action = {}) => {

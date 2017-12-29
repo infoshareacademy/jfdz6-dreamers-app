@@ -15,7 +15,7 @@ class Events extends React.Component {
 
     componentDidMount() {
         console.log('mounts')
-        // this.props.getEvents(new Date())
+        this.props.getEvents(this.state.dateFrom, this.state.dateTo)
     }
 
 
@@ -23,13 +23,14 @@ class Events extends React.Component {
         this.setState(
             {dateFrom}
         )
-        // getEvents(dateFrom);
+              this.props.getEvents(this.state.dateFrom, this.state.dateTo)
+
     }
     onChange2 = dateTo => {
         this.setState(
-            {dateTo, ala:'makota'}
+            {dateTo}
         )
-        this.props.getEvents(dateTo)
+        this.props.getEvents(this.state.dateFrom, this.state.dateTo)
     }
 
 
@@ -87,7 +88,7 @@ class Events extends React.Component {
     })
 
     const mapDispatchToProps = dispatch => ({
-        getEvents: (day) => dispatch(getEvents(day))
+        getEvents: (dateFrom, dateTo) => dispatch(getEvents(dateFrom, dateTo))
 
     })
 
