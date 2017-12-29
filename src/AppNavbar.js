@@ -16,6 +16,7 @@ import {
 } from 'react-router-bootstrap'
 
 import EventOfADay from './EventOfADay'
+import SearchEvents from './Events'
 
 const AppNavbar = () => (
       <Router>
@@ -68,13 +69,6 @@ const AppNavbar = () => (
         <p>1 slajd - wydarzenie dnia</p>
         <p>2 slajd - wyszukiwarka</p>
         <p>3 slajd - moje wydarzenia</p>
-      </div>
-    )
-
-    const SearchEvents = () => (
-      <div>
-        <h2>Search Events</h2>
-        <p>Wyszukiwarka z filtrami</p>
       </div>
     )
 
