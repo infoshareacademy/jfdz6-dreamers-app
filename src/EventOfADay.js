@@ -11,12 +11,18 @@ import './EventOfADay.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
-import {getEvents} from './state/events'
+import {getEventOfADay} from './state/eventofaday'
 
 class EventOfADay extends Component {
+
     state = {
-        events: []
+        eventofaday: []
     }
+
+    componentDidMount() {
+        this.props.getEventOfADay('a')
+    }
+
     render() {
         return (
             <div>
@@ -51,8 +57,10 @@ class EventOfADay extends Component {
                 <Col xs={12} align="left">
                     <ol>
                         {
-                            (this.props.events.data || []).map(
-                                event => (
+                            (this.props.eventofaday.data || []).map(
+                                event =>
+                                    // event.startDate === dateToday ?
+                                    (
                                     <li key={event.id}>
                                         {/*<p>{event.place}</p>*/}
                                         {/*<p>{event.endDate}</p>*/}
@@ -81,11 +89,11 @@ class EventOfADay extends Component {
 }
 
 const mapStateToProps = state => ({
-    events: state.events
+    eventofaday: state.eventofaday
 })
 
 const mapDispatchToProps = dispatch => ({
-    getEvents: (day) => dispatch(getEvents(day))
+    getEventOfADay: (dayE) => dispatch(getEventOfADay(dayE))
 
 })
 

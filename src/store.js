@@ -2,6 +2,7 @@ import { compose, createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import persistState from 'redux-localstorage'
 import events from './state/events'
+import eventofaday from './state/eventofaday'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -13,10 +14,9 @@ const enhancer = composeEnhancers(
 )
 
 const reducer = combineReducers({
-    events
+    events,
+    eventofaday
 })
-
-
 
 const store = createStore(
     reducer,
