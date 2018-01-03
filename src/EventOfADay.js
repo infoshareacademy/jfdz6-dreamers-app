@@ -21,7 +21,14 @@ class EventOfADay extends Component {
 
     componentDidMount() {
         this.props.getEventOfADay('a')
+        let maximumPriceToday = this.props.eventofaday.data.reduce(
+            (max, event) =>
+                parseInt(event.tickets.startTicket) > max ?
+                    parseInt(event.tickets.startTicket) : max
+            , 0)
+        console.log(maximumPriceToday)
     }
+
 
     render() {
         return (
@@ -82,6 +89,7 @@ class EventOfADay extends Component {
                             )
                         }
                     </ol>
+                <hr/>
                 </Col>
             </div>
         )

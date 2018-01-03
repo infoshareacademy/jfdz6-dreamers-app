@@ -8,7 +8,7 @@ export const getEvents = ( dateFrom, dateTo ) => dispatch => {
     console.log('Do : ', dateTo.toJSON().slice(0,10));
 
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = 'http://planer.info.pl/api/rest/events.json?limit=15'
+        targetUrl = 'http://planer.info.pl/api/rest/events.json?limit=150'
 
     dispatch({ type: GET_BEGIN })
     return fetch(
