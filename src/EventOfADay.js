@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import moment from 'moment'
 
 import {
     Button,
@@ -15,18 +16,34 @@ import {getEventOfADay} from './state/eventofaday'
 
 class EventOfADay extends Component {
 
-    state = {
-        eventofaday: []
+    constructor() {
+        super();
+        this.state = {
+            eventofaday: [],
+            maximumPriceToday: null,
+            bestEvent: null
+        }
     }
 
     componentDidMount() {
-        this.props.getEventOfADay('a')
-        let maximumPriceToday = this.props.eventofaday.data.reduce(
-            (max, event) =>
-                parseInt(event.tickets.startTicket) > max ?
-                    parseInt(event.tickets.startTicket) : max
-            , 0)
-        console.log(maximumPriceToday)
+        this.props.getEventOfADay('a');
+        if (this.props.eventofaday.data.length > 0) {
+            const maximumStartPrice = this.props.eventofaday.data.reduce(
+                (max, event) =>
+                    parseInt(event.tickets.startTicket) > max ?
+                        parseInt(event.tickets.startTicket) : max
+                , 0)
+            const myBestEvent = (this.props.eventofaday.data)
+                .filter(
+                    event =>
+                        event.tickets.startTicket >= maximumStartPrice
+                );
+            console.log(myBestEvent)
+            this.setState({
+                maximumPriceToday: maximumStartPrice,
+                bestEvent: myBestEvent
+            })
+        }
     }
 
 
@@ -35,66 +52,81 @@ class EventOfADay extends Component {
             <div>
                 <h2>Event of a day</h2>
                 <hr/>
-                <h4>Nazwa wydarzenia</h4>
-                <Col xs={12} sm={6} className="EventOfADay_image">
-                </Col>
-                <Col xs={12} sm={6} className="EventOfADay_info">
-                    <p>Start: ???</p>
-                    <p>Koniec: ???</p>
-                    <p>Miejsce: ???</p>
-                    <p>Płatne: ???</p>
-                </Col>
-                <Clearfix></Clearfix>
-                <Col>
-                    <p>Opis wydarzenia</p>
-                    <p>Lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-                        ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-                        lorem ipsum lorem ipsum</p>
-                </Col>
-                <Col xs={12}>
-                    <Col xs={12} sm={6}>
-                        <p>Liczba osób, która zapisała się na wydarzenie</p>
+                {this.state.bestEvent &&
+                <div>
+                    <h4>{this.state.bestEvent[0].name}</h4>
+                    <Col xs={12} sm={6} className="EventOfADay_image">
                     </Col>
-                    <Col xs={12} sm={6}>
-                        <Button bsStyle="success">Zapisz wydarzenie</Button>
+                    <Col xs={12} sm={6} className="EventOfADay_info">
+                        <p>Start: {moment(this.state.bestEvent[0].startDate).format('H:mm')}</p>
+                        <p>Koniec: {moment(this.state.bestEvent[0].endDate).format('H:mm')}</p>
+                        <p>Miejsce:{this.state.bestEvent[0].place.name}</p>
+                        <p>{this.state.bestEvent[0].place.subname}</p>
+                        {this.state.bestEvent[0].tickets.type ?
+                            <p>Płatne:&nbsp;
+                                {this.state.bestEvent[0].tickets.startTicket}
+                                &nbsp;-&nbsp;
+                                {this.state.bestEvent[0].tickets.endTicket}
+                                &nbsp;PLN
+                            </p> :
+                            <p>Bezpłatne</p>}
                     </Col>
-                </Col>
+                    <Clearfix></Clearfix>
+                    <Col>
+                        <p>Opis wydarzenia</p>
+                        <p>{this.state.bestEvent[0].descLong}</p>
+                    </Col>
+                    <Col xs={12}>
+                        <Col xs={12} sm={6}>
+                            <p>Liczba osób, która zapisała się na wydarzenie</p>
+                        </Col>
+                        <Col xs={12} sm={6}>
+                            <Button bsStyle="success">Zapisz wydarzenie</Button>
+                        </Col>
+                    </Col>
+                </div>
+                }
 
                 {/*below listing all events*/}
                 <Col xs={12} align="left">
                     <ol>
                         {
-                            (this.props.eventofaday.data || []).map(
-                                event =>
-                                    // event.startDate === dateToday ?
-                                    (
-                                    <li key={event.id}>
-                                        {/*<p>{event.place}</p>*/}
-                                        {/*<p>{event.endDate}</p>*/}
-                                        <p>{event.name}</p>
-                                        {/*<p>{event.urls}</p>*/}
-                                        {/*<p>{event.attachments}</p>*/}
-                                        {/*<p>{event.descLong}</p>*/}
-                                        {/*<p>{event.categoryId}</p>*/}
-                                        <p>{event.startDate}</p>
-                                        {/*<p>{event.organizer}</p>*/}
-                                        {/*<p>{event.active}</p>*/}
-                                        <p>{event.tickets.startTicket
-                                        + ' - '
-                                        + event.tickets.endTicket}
-                                        </p>
-
-                                    </li>
+                            (this.props.eventofaday.data || [])
+                                .filter(
+                                    event =>
+                                        event.tickets.startTicket >= this.state.maximumPriceToday
                                 )
-                            )
+                                .map(
+                                    event =>
+                                        (
+                                            <li key={event.id}>
+                                                {/*<p>{event.place}</p>*/}
+                                                {/*<p>{event.endDate}</p>*/}
+                                                <p>{event.name}</p>
+                                                {/*<p>{event.urls}</p>*/}
+                                                {/*<p>{event.attachments}</p>*/}
+                                                {/*<p>{event.descLong}</p>*/}
+                                                {/*<p>{event.categoryId}</p>*/}
+                                                <p>{event.startDate}</p>
+                                                {/*<p>{event.organizer}</p>*/}
+                                                {/*<p>{event.active}</p>*/}
+                                                <p>{event.tickets.startTicket
+                                                + ' - '
+                                                + event.tickets.endTicket}
+                                                </p>
+
+                                            </li>
+                                        )
+                                )
                         }
                     </ol>
-                <hr/>
+                    <hr/>
                 </Col>
             </div>
         )
     }
 }
+
 
 const mapStateToProps = state => ({
     eventofaday: state.eventofaday
@@ -102,10 +134,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getEventOfADay: (dayE) => dispatch(getEventOfADay(dayE))
-
 })
+
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-) (EventOfADay)
+)(EventOfADay)
