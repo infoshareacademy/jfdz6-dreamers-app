@@ -26,14 +26,15 @@ class EventOfADay extends Component {
     }
 
     componentDidMount() {
+        const{eventofaday}=this.props; //destrukturyzacja
         this.props.getEventOfADay('a');
-        if (this.props.eventofaday.data.length > 0) {
-            const maximumStartPrice = this.props.eventofaday.data.reduce(
+        if (eventofaday.data.length > 0) {
+            const maximumStartPrice = eventofaday.data.reduce(
                 (max, event) =>
                     parseInt(event.tickets.startTicket) > max ?
                         parseInt(event.tickets.startTicket) : max
                 , 0)
-            const myBestEvent = (this.props.eventofaday.data)
+            const myBestEvent = (eventofaday.data)
                 .filter(
                     event =>
                         event.tickets.startTicket >= maximumStartPrice
@@ -46,27 +47,27 @@ class EventOfADay extends Component {
         }
     }
 
-
     render() {
+        const{bestEvent}=this.state; //destrukturyzacja
         return (
             <div>
                 <h2>Event of a day</h2>
                 <hr/>
-                {this.state.bestEvent &&
+                {bestEvent &&
                 <div>
-                    <h4>{this.state.bestEvent[0].name}</h4>
+                    <h4>{bestEvent[0].name}</h4>
                     <Col xs={12} sm={6} className="EventOfADay_image">
                     </Col>
                     <Col xs={12} sm={6} className="EventOfADay_info">
-                        <p>Start: {moment(this.state.bestEvent[0].startDate).format('H:mm')}</p>
-                        <p>Koniec: {moment(this.state.bestEvent[0].endDate).format('H:mm')}</p>
-                        <p>Miejsce:{this.state.bestEvent[0].place.name}</p>
-                        <p>{this.state.bestEvent[0].place.subname}</p>
-                        {this.state.bestEvent[0].tickets.type ?
+                        <p>Start: {moment(bestEvent[0].startDate).format('H:mm')}</p>
+                        <p>Koniec: {moment(bestEvent[0].endDate).format('H:mm')}</p>
+                        <p>Miejsce:{bestEvent[0].place.name}</p>
+                        <p>{bestEvent[0].place.subname}</p>
+                        {bestEvent[0].tickets.type ?
                             <p>Płatne:&nbsp;
-                                {this.state.bestEvent[0].tickets.startTicket}
+                                {bestEvent[0].tickets.startTicket}
                                 &nbsp;-&nbsp;
-                                {this.state.bestEvent[0].tickets.endTicket}
+                                {bestEvent[0].tickets.endTicket}
                                 &nbsp;PLN
                             </p> :
                             <p>Bezpłatne</p>}
@@ -74,7 +75,7 @@ class EventOfADay extends Component {
                     <Clearfix></Clearfix>
                     <Col>
                         <p>Opis wydarzenia</p>
-                        <p>{this.state.bestEvent[0].descLong}</p>
+                        <p>{bestEvent[0].descLong}</p>
                     </Col>
                     <Col xs={12}>
                         <Col xs={12} sm={6}>
