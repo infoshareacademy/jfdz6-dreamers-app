@@ -5,7 +5,8 @@ import moment from 'moment'
 import {
     Button,
     Col,
-    Clearfix
+    Clearfix,
+    Carousel
 } from 'react-bootstrap'
 
 import './EventOfADay.css'
@@ -91,19 +92,17 @@ class EventOfADay extends Component {
                     </Col>
 
                     <Col xs={12} align="left">
-                        <ol>
-                            {bestEvent[0].attachments
-                                .map(
-                                    attachment =>
-                                        (
-                                            <li>
-                                                {attachment.fileName}
-                                            </li>
-                                        )
-                                )
-
+                        <Carousel controls={false} indicators={false}>
+                            {
+                                (bestEvent[0].attachments)
+                                    .map(
+                                        attachment =>
+                                        <Carousel.Item>
+                                            <img src={attachment.fileName}/>
+                                        </Carousel.Item>
+                                     )
                             }
-                        </ol>
+                        </Carousel>
                     </Col>
                 </div>
                 }
