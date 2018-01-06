@@ -9,33 +9,37 @@ class Events extends React.Component {
         deleting: false,
         error: null,
         dateFrom: new Date(),
-        dateTo: new Date(),
+        dateTo: new Date(+new Date() + 86400000),
+        eventType: 'tickets'
 
     }
 
     componentDidMount() {
         console.log('mounts')
-        // this.props.getEvents(new Date())
+        this.props.getEvents(this.state.dateFrom, this.state.dateTo)
     }
 
 
     onChange1 = dateFrom => {
         this.setState(
-            {dateFrom}
+            {dateFrom: dateFrom}
         )
-        // getEvents(dateFrom);
+        this.props.getEvents(dateFrom, this.state.dateTo)
+
     }
     onChange2 = dateTo => {
         this.setState(
-            {dateTo, ala:'makota'}
+            {dateTo: dateTo}
         )
-        this.props.getEvents(dateTo)
+        this.props.getEvents(this.state.dateFrom, dateTo)
+
+    }
+    onClickFilter(){
+        console.log('this.state');
     }
 
-
-
     render() {
-        console.warn('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props.events)
+        //console.warn('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props.events)
         return (
             <div>
                 <h1>Events</h1>
@@ -51,6 +55,7 @@ class Events extends React.Component {
                 <label><input type="checkbox" name="checkbox2"/>Płatne</label>
                 <label><input type="checkbox" name="checkbox3"/>Nie określone</label>
 
+                <button onClick={this.onClickFilter}>Filtruj</button>
 
                 {
                     this.state.error && <p>{this.state.error.message}</p>
@@ -61,8 +66,13 @@ class Events extends React.Component {
                 }
 
                 <ol>
+                    {console.log('data',this.props.events.data)}
                     {
-                        (this.props.events.data || []).map(
+                        (this.props.events.data || [])
+                            .filter(event => event.tickets.type === this.state.eventType)
+
+
+                            .map(
                             event => (
                                 <li
                                     key={event.id}
@@ -83,11 +93,13 @@ class Events extends React.Component {
     }
 
     const mapStateToProps = state => ({
-        events: state.events
+        events: state.events,
+        dateFrom: state.dateFrom,
+        dateTo: state.dateTo
     })
 
     const mapDispatchToProps = dispatch => ({
-        getEvents: (day) => dispatch(getEvents(day))
+        getEvents: (dateFrom, dateTo) => dispatch(getEvents(dateFrom, dateTo))
 
     })
 
