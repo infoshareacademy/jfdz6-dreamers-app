@@ -6,6 +6,21 @@ export const getEvents = ( dateFrom, dateTo ) => dispatch => {
    // let urltest = 'http://planer.info.pl/api/rest/events.json?start_date='+day+'&limit=12';
  //   console.log('Od : ',dateFrom.toJSON().slice(0,10));
  //   console.log('Do : ', dateTo.toJSON().slice(0,10));
+
+    if(dateFrom===null){
+        dateFrom = new Date();
+    }
+    if(dateTo===null){
+        dateTo = new Date()
+    }
+    if(dateTo.getTime() < dateFrom.getTime()){
+        dateTo = new Date(+dateFrom + 86400000)
+    }
+    console.log('Od : ',dateFrom.toJSON().slice(0,10));
+    console.log('Do : ', dateTo.toJSON().slice(0,10));
+
+
+
     dateFrom = dateFrom.toJSON().slice(0,10);
     dateTo = dateTo.toJSON().slice(0,10);
 

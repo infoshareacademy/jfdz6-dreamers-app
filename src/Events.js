@@ -33,9 +33,6 @@ class Events extends React.Component {
         this.props.getEvents(this.state.dateFrom, dateTo)
 
     }
-    onClickFilter(){
-        console.log('this.state');
-    }
 
     handleRadioChange = (event) => {
         this.setState({
@@ -48,6 +45,7 @@ class Events extends React.Component {
         return (
             <div>
                 <h1>Events</h1>
+                <hr/>
                 <DatePicker
                     onChange={this.onChange1}
                     value={this.state.dateFrom}
@@ -56,6 +54,8 @@ class Events extends React.Component {
                     onChange={this.onChange2}
                     value={this.state.dateTo}
                 />
+                <hr/>
+
                 <div className="radio-row">
                     <div className="input-row">
                         <input
@@ -66,8 +66,7 @@ class Events extends React.Component {
                             onChange={this.handleRadioChange}
                         />
                         <label htmlFor="free">Darmowe</label>
-                    </div>
-                    <div className="input-row">
+
                         <input
                             type="radio"
                             name="tickets"
@@ -76,8 +75,7 @@ class Events extends React.Component {
                             onChange={this.handleRadioChange}
                         />
                         <label htmlFor="tickets">Płatne</label>
-                    </div>
-                    <div className="input-row">
+
                         <input
                             type="radio"
                             name="unknown"
@@ -88,9 +86,7 @@ class Events extends React.Component {
                         <label htmlFor="unknown">Nie określone</label>
                     </div>
                 </div>
-
-                <button onClick={this.onClickFilter}>Filtruj</button>
-
+            <hr/>
                 {
                     this.state.error && <p>{this.state.error.message}</p>
                 }
