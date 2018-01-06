@@ -23,7 +23,7 @@ class Events extends React.Component {
         this.setState(
             {dateFrom}
         )
-              this.props.getEvents(this.state.dateFrom, this.state.dateTo)
+        this.props.getEvents(this.state.dateFrom, this.state.dateTo)
 
     }
     onChange2 = dateTo => {
@@ -32,7 +32,6 @@ class Events extends React.Component {
         )
         this.props.getEvents(this.state.dateFrom, this.state.dateTo)
     }
-
 
 
     render() {
@@ -79,44 +78,45 @@ class Events extends React.Component {
                     }
                 </ol>
             </div>
-    )
+        )
     }
+}
+
+const mapStateToProps = state => ({
+    events: state.events
+})
+
+const mapDispatchToProps = dispatch => ({
+    getEvents: (dateFrom, dateTo) => dispatch(getEvents(dateFrom, dateTo))
+
+})
+
+
+function checkIfAttachmentExist(event) {
+    if (event['attachments']['0'] !== undefined) {
+
+        return "http://planer.info.pl/image/event/" + event['id'] + "/" + event['attachments']['fileName'];
     }
-
-    const mapStateToProps = state => ({
-        events: state.events
-    })
-
-    const mapDispatchToProps = dispatch => ({
-        getEvents: (dateFrom, dateTo) => dispatch(getEvents(dateFrom, dateTo))
-
-    })
-
-
-    function  checkIfAttachmentExist(event) {
-        if(event['attachments']['0']!==undefined){
-
-        return "http://planer.info.pl/image/event/"+event['id']+"/"+event['attachments']['fileName'];
-    }
-        else{
+    else {
         return "http://lorempixel.com/300/300/nightlife";
     }
-    }
+}
 
-    function checkIfUrlExist(event){
-        if(event['urls']['www']!==undefined){
+function checkIfUrlExist(event) {
+    if (event['urls']['www'] !== undefined) {
         return event['urls']['www'];
     }
-        else{
+    else {
         return event['urls']['www'];
     }
-    }
-    function getDateNode(event) {
-        return event['startDate'].substring(0, event['startDate'].length - 5).replace('T', ' Godzina: ');
-    }
+}
+
+function getDateNode(event) {
+    return event['startDate'].substring(0, event['startDate'].length - 5).replace('T', ' Godzina: ');
+}
 
 
-    export default connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-    )(Events)
+)(Events)

@@ -27,7 +27,7 @@ class EventOfADay extends Component {
     }
 
     componentDidMount() {
-        const{eventofaday}=this.props; //destructuring
+        const {eventofaday} = this.props; //destructuring
         this.props.getEventOfADay('a');
         if (eventofaday.data.length > 0) {
             const maximumVipTicketPrice = eventofaday.data.reduce(
@@ -49,7 +49,7 @@ class EventOfADay extends Component {
     }
 
     render() {
-        const{bestEvent}=this.state; //destructuring
+        const {bestEvent} = this.state; //destructuring
         return (
             <div>
                 <h2>Event of a day</h2>
@@ -57,10 +57,21 @@ class EventOfADay extends Component {
                 {bestEvent &&
                 <div>
                     <h4>{bestEvent[0].name}</h4>
-                    <Col xs={12} sm={6} className="EventOfADay_image">
-                            <a href={bestEvent[0].urls.www}>
-                                <img src={bestEvent[0].attachments[0].fileName} class="img-responsive"/>
-                            </a>
+                    <Col xs={12} sm={6}>
+                        {/*<a href={bestEvent[0].urls.www}>*/}
+                            {/*<img src={bestEvent[0].attachments[0].fileName} class="img-responsive"/>*/}
+                        {/*</a>*/}
+                        <Carousel controls={false} indicators={false}>
+                            {
+                                (bestEvent[0].attachments)
+                                    .map(
+                                        attachment =>
+                                            <Carousel.Item>
+                                                <img src={attachment.fileName}/>
+                                            </Carousel.Item>
+                                    )
+                            }
+                        </Carousel>
                     </Col>
                     <Col xs={12} sm={6} className="EventOfADay_info">
                         <p>Start: {moment(bestEvent[0].startDate).format('H:mm')}</p>
@@ -89,20 +100,6 @@ class EventOfADay extends Component {
                         <Col xs={12} sm={6}>
                             <Button bsStyle="success">Zapisz wydarzenie</Button>
                         </Col>
-                    </Col>
-
-                    <Col xs={12} align="left">
-                        <Carousel controls={false} indicators={false}>
-                            {
-                                (bestEvent[0].attachments)
-                                    .map(
-                                        attachment =>
-                                        <Carousel.Item>
-                                            <img src={attachment.fileName}/>
-                                        </Carousel.Item>
-                                     )
-                            }
-                        </Carousel>
                     </Col>
                 </div>
                 }
