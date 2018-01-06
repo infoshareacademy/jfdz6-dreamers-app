@@ -57,6 +57,9 @@ class EventOfADay extends Component {
                 <div>
                     <h4>{bestEvent[0].name}</h4>
                     <Col xs={12} sm={6} className="EventOfADay_image">
+                            <a href={bestEvent[0].urls.www}>
+                                <img src={bestEvent[0].attachments[0].fileName} class="img-responsive"/>
+                            </a>
                     </Col>
                     <Col xs={12} sm={6} className="EventOfADay_info">
                         <p>Start: {moment(bestEvent[0].startDate).format('H:mm')}</p>
@@ -70,7 +73,8 @@ class EventOfADay extends Component {
                                 {bestEvent[0].tickets.endTicket}
                                 &nbsp;PLN
                             </p> :
-                            <p>Bezpłatne</p>}
+                            <p>Bezpłatne</p>
+                        }
                     </Col>
                     <Clearfix></Clearfix>
                     <Col>
