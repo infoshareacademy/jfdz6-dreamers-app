@@ -11,7 +11,7 @@ export const getEvents = ( dateFrom, dateTo ) => dispatch => {
 
 
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+dateFrom+'&end_date='+dateTo+'&limit=50';
+        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+dateFrom+'&end_date='+dateTo+'&limit=250';
  //   console.log('link', targetUrl)
     dispatch({ type: GET_BEGIN })
 

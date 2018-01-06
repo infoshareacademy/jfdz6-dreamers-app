@@ -10,8 +10,7 @@ class Events extends React.Component {
         error: null,
         dateFrom: new Date(),
         dateTo: new Date(+new Date() + 86400000),
-        eventType: 'tickets'
-
+        selectedRadio: 'tickets'
     }
 
     componentDidMount() {
@@ -38,6 +37,12 @@ class Events extends React.Component {
         console.log('this.state');
     }
 
+    handleRadioChange = (event) => {
+        this.setState({
+            selectedRadio: event.currentTarget.value
+        })
+    };
+
     render() {
         //console.warn('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props.events)
         return (
@@ -51,9 +56,38 @@ class Events extends React.Component {
                     onChange={this.onChange2}
                     value={this.state.dateTo}
                 />
-                <label><input type="checkbox" name="checkbox1"/>Darmowe</label>
-                <label><input type="checkbox" name="checkbox2"/>Płatne</label>
-                <label><input type="checkbox" name="checkbox3"/>Nie określone</label>
+                <div className="radio-row">
+                    <div className="input-row">
+                        <input
+                            type="radio"
+                            name="free"
+                            value="free"
+                            checked={this.state.selectedRadio === 'free'}
+                            onChange={this.handleRadioChange}
+                        />
+                        <label htmlFor="free">Darmowe</label>
+                    </div>
+                    <div className="input-row">
+                        <input
+                            type="radio"
+                            name="tickets"
+                            value="tickets"
+                            checked={this.state.selectedRadio === 'tickets'}
+                            onChange={this.handleRadioChange}
+                        />
+                        <label htmlFor="tickets">Płatne</label>
+                    </div>
+                    <div className="input-row">
+                        <input
+                            type="radio"
+                            name="unknown"
+                            value="unknown"
+                            checked={this.state.selectedRadio === 'unknown'}
+                            onChange={this.handleRadioChange}
+                        />
+                        <label htmlFor="unknown">Nie określone</label>
+                    </div>
+                </div>
 
                 <button onClick={this.onClickFilter}>Filtruj</button>
 
@@ -69,7 +103,7 @@ class Events extends React.Component {
                     {console.log('data',this.props.events.data)}
                     {
                         (this.props.events.data || [])
-                            .filter(event => event.tickets.type === this.state.eventType)
+                            .filter(event => event.tickets.type === this.state.selectedRadio)
 
 
                             .map(
