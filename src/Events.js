@@ -9,8 +9,8 @@ class Events extends React.Component {
         deleting: false,
         error: null,
         dateFrom: new Date(),
-        dateTo: new Date(),
-
+        dateTo: new Date(+new Date() + 86400000),
+        selectedRadio: 'tickets'
     }
 
     componentDidMount() {
@@ -21,24 +21,31 @@ class Events extends React.Component {
 
     onChange1 = dateFrom => {
         this.setState(
-            {dateFrom}
+            {dateFrom: dateFrom}
         )
-        this.props.getEvents(this.state.dateFrom, this.state.dateTo)
+        this.props.getEvents(dateFrom, this.state.dateTo)
 
     }
     onChange2 = dateTo => {
         this.setState(
-            {dateTo}
+            {dateTo: dateTo}
         )
-        this.props.getEvents(this.state.dateFrom, this.state.dateTo)
+        this.props.getEvents(this.state.dateFrom, dateTo)
+
     }
 
+    handleRadioChange = (event) => {
+        this.setState({
+            selectedRadio: event.currentTarget.value
+        })
+    };
 
     render() {
-        console.warn('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props.events)
+        //console.warn('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props.events)
         return (
             <div>
                 <h1>Events</h1>
+                <hr/>
                 <DatePicker
                     onChange={this.onChange1}
                     value={this.state.dateFrom}
@@ -47,11 +54,39 @@ class Events extends React.Component {
                     onChange={this.onChange2}
                     value={this.state.dateTo}
                 />
-                <label><input type="checkbox" name="checkbox1"/>Darmowe</label>
-                <label><input type="checkbox" name="checkbox2"/>Płatne</label>
-                <label><input type="checkbox" name="checkbox3"/>Nie określone</label>
+                <hr/>
 
+                <div className="radio-row">
+                    <div className="input-row">
+                        <input
+                            type="radio"
+                            name="free"
+                            value="free"
+                            checked={this.state.selectedRadio === 'free'}
+                            onChange={this.handleRadioChange}
+                        />
+                        <label htmlFor="free">Darmowe</label>
 
+                        <input
+                            type="radio"
+                            name="tickets"
+                            value="tickets"
+                            checked={this.state.selectedRadio === 'tickets'}
+                            onChange={this.handleRadioChange}
+                        />
+                        <label htmlFor="tickets">Płatne</label>
+
+                        <input
+                            type="radio"
+                            name="unknown"
+                            value="unknown"
+                            checked={this.state.selectedRadio === 'unknown'}
+                            onChange={this.handleRadioChange}
+                        />
+                        <label htmlFor="unknown">Nie określone</label>
+                    </div>
+                </div>
+            <hr/>
                 {
                     this.state.error && <p>{this.state.error.message}</p>
                 }
@@ -61,8 +96,13 @@ class Events extends React.Component {
                 }
 
                 <ol>
+                    {console.log('data',this.props.events.data)}
                     {
-                        (this.props.events.data || []).map(
+                        (this.props.events.data || [])
+                            .filter(event => event.tickets.type === this.state.selectedRadio)
+
+
+                            .map(
                             event => (
                                 <li
                                     key={event.id}
@@ -78,45 +118,46 @@ class Events extends React.Component {
                     }
                 </ol>
             </div>
-        )
+    )
     }
-}
-
-const mapStateToProps = state => ({
-    events: state.events
-})
-
-const mapDispatchToProps = dispatch => ({
-    getEvents: (dateFrom, dateTo) => dispatch(getEvents(dateFrom, dateTo))
-
-})
-
-
-function checkIfAttachmentExist(event) {
-    if (event['attachments']['0'] !== undefined) {
-
-        return "http://planer.info.pl/image/event/" + event['id'] + "/" + event['attachments']['fileName'];
     }
-    else {
+
+    const mapStateToProps = state => ({
+        events: state.events,
+        dateFrom: state.dateFrom,
+        dateTo: state.dateTo
+    })
+
+    const mapDispatchToProps = dispatch => ({
+        getEvents: (dateFrom, dateTo) => dispatch(getEvents(dateFrom, dateTo))
+
+    })
+
+
+    function  checkIfAttachmentExist(event) {
+        if(event['attachments']['0']!==undefined){
+
+        return "http://planer.info.pl/image/event/"+event['id']+"/"+event['attachments']['fileName'];
+    }
+        else{
         return "http://lorempixel.com/300/300/nightlife";
     }
-}
+    }
 
-function checkIfUrlExist(event) {
-    if (event['urls']['www'] !== undefined) {
+    function checkIfUrlExist(event){
+        if(event['urls']['www']!==undefined){
         return event['urls']['www'];
     }
-    else {
+        else{
         return event['urls']['www'];
     }
-}
+    }
+    function getDateNode(event) {
+        return event['startDate'].substring(0, event['startDate'].length - 5).replace('T', ' Godzina: ');
+    }
 
-function getDateNode(event) {
-    return event['startDate'].substring(0, event['startDate'].length - 5).replace('T', ' Godzina: ');
-}
 
-
-export default connect(
+    export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Events)
+    )(Events)

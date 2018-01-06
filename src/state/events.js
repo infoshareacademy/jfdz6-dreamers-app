@@ -4,19 +4,39 @@ const GET_FAIL = 'events/GET_FAIL'
 
 export const getEvents = ( dateFrom, dateTo ) => dispatch => {
    // let urltest = 'http://planer.info.pl/api/rest/events.json?start_date='+day+'&limit=12';
+ //   console.log('Od : ',dateFrom.toJSON().slice(0,10));
+ //   console.log('Do : ', dateTo.toJSON().slice(0,10));
+
+    if(dateFrom===null){
+        dateFrom = new Date();
+    }
+    if(dateTo===null){
+        dateTo = new Date()
+    }
+    if(dateTo.getTime() < dateFrom.getTime()){
+        dateTo = new Date(+dateFrom + 86400000)
+    }
     console.log('Od : ',dateFrom.toJSON().slice(0,10));
     console.log('Do : ', dateTo.toJSON().slice(0,10));
 
-    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = 'http://planer.info.pl/api/rest/events.json?limit=150'
 
+
+    dateFrom = dateFrom.toJSON().slice(0,10);
+    dateTo = dateTo.toJSON().slice(0,10);
+
+
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+dateFrom+'&end_date='+dateTo+'&limit=250';
+ //   console.log('link', targetUrl)
     dispatch({ type: GET_BEGIN })
+
+
     return fetch(
         proxyUrl + targetUrl
     ).then(
         response => response.json()
     ).then(
-        data => dispatch({ type: GET_SUCCESS, data })
+        data => dispatch({ type: GET_SUCCESS, data,dateFrom,dateTo })
     ).catch(
         error => dispatch({ type: GET_FAIL, error })
     )
@@ -26,11 +46,10 @@ const initialState = {
     data: null,
     getting: false,
     error: null,
-    dateFrom: new Date(),
-    dateTo: new Date()
 }
 
 export default (state = initialState, action = {}) => {
+
     switch (action.type) {
         case GET_BEGIN:
             return {
@@ -42,7 +61,9 @@ export default (state = initialState, action = {}) => {
             return {
                 ...state,
                 data: action.data,
-                getting: false
+                getting: false,
+                dateFrom: action.dateFrom,
+                dateTo: action.dateTo
             }
         case GET_FAIL:
             return {
