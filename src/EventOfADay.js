@@ -89,6 +89,22 @@ class EventOfADay extends Component {
                             <Button bsStyle="success">Zapisz wydarzenie</Button>
                         </Col>
                     </Col>
+
+                    <Col xs={12} align="left">
+                        <ol>
+                            {bestEvent[0].attachments
+                                .map(
+                                    attachment =>
+                                        (
+                                            <li>
+                                                {attachment.fileName}
+                                            </li>
+                                        )
+                                )
+
+                            }
+                        </ol>
+                    </Col>
                 </div>
                 }
 
