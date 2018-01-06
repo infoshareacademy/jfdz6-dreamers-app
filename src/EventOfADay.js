@@ -26,29 +26,29 @@ class EventOfADay extends Component {
     }
 
     componentDidMount() {
-        const{eventofaday}=this.props; //destrukturyzacja
+        const{eventofaday}=this.props; //destructuring
         this.props.getEventOfADay('a');
         if (eventofaday.data.length > 0) {
-            const maximumStartPrice = eventofaday.data.reduce(
+            const maximumVipTicketPrice = eventofaday.data.reduce(
                 (max, event) =>
-                    parseInt(event.tickets.startTicket) > max ?
-                        parseInt(event.tickets.startTicket) : max
+                    parseInt(event.tickets.endTicket) > max ?
+                        parseInt(event.tickets.endTicket) : max
                 , 0)
             const myBestEvent = (eventofaday.data)
                 .filter(
                     event =>
-                        event.tickets.startTicket >= maximumStartPrice
+                        event.tickets.endTicket >= maximumVipTicketPrice
                 );
             console.log(myBestEvent)
             this.setState({
-                maximumPriceToday: maximumStartPrice,
+                maximumPriceToday: maximumVipTicketPrice,
                 bestEvent: myBestEvent
             })
         }
     }
 
     render() {
-        const{bestEvent}=this.state; //destrukturyzacja
+        const{bestEvent}=this.state; //destructuring
         return (
             <div>
                 <h2>Event of a day</h2>
@@ -95,7 +95,7 @@ class EventOfADay extends Component {
                             (this.props.eventofaday.data || [])
                                 .filter(
                                     event =>
-                                        event.tickets.startTicket >= this.state.maximumPriceToday
+                                        event.tickets.endTicket >= this.state.maximumPriceToday
                                 )
                                 .map(
                                     event =>
