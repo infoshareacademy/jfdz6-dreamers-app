@@ -17,14 +17,12 @@ import {getEventOfADay} from './state/eventofaday'
 
 class EventOfADay extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            eventofaday: [],
-            maximumPriceToday: null,
-            bestEvent: null
-        }
+    state = {
+        eventofaday: [],
+        maximumPriceToday: null,
+        bestEvent: null
     }
+
 
     componentDidMount() {
         const {eventofaday} = this.props; //destructuring
@@ -49,19 +47,19 @@ class EventOfADay extends Component {
     }
 
     render() {
-        const {bestEvent} = this.state; //destructuring
+        const bestEvent = this.state.bestEvent && this.state.bestEvent[0]; //destructuring
         return (
             <div>
                 <h2>Event of a day</h2>
                 <hr/>
                 {bestEvent &&
                 <div>
-                    <h3>{bestEvent[0].name}</h3>
+                    <h3>{bestEvent.name}</h3>
                     <Col xs={12} sm={6}>
-                        <a href={bestEvent[0].urls.www}>
+                        <a href={bestEvent.urls.www}>
                             <Carousel controls={false} indicators={false}>
                                 {
-                                    (bestEvent[0].attachments)
+                                    (bestEvent.attachments)
                                         .map(
                                             attachment =>
                                                 <Carousel.Item>
@@ -73,15 +71,15 @@ class EventOfADay extends Component {
                         </a>
                     </Col>
                     <Col xs={12} sm={6} className="EventOfADay_info">
-                        <p>Start: {moment(bestEvent[0].startDate).format('H:mm')}</p>
-                        <p>Koniec: {moment(bestEvent[0].endDate).format('H:mm')}</p>
-                        <p>Miejsce: {bestEvent[0].place.name}</p>
-                        <p>{bestEvent[0].place.subname}</p>
-                        {bestEvent[0].tickets.type ?
+                        <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
+                        <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
+                        <p>Miejsce: {bestEvent.place.name}</p>
+                        <p>{bestEvent.place.subname}</p>
+                        {bestEvent.tickets.type ?
                             <p>Płatne:&nbsp;
-                                {bestEvent[0].tickets.startTicket}
+                                {bestEvent.tickets.startTicket}
                                 &nbsp;-&nbsp;
-                                {bestEvent[0].tickets.endTicket}
+                                {bestEvent.tickets.endTicket}
                                 &nbsp;PLN
                             </p> :
                             <p>Bezpłatne</p>
@@ -90,7 +88,7 @@ class EventOfADay extends Component {
                     <Clearfix></Clearfix>
                     <Col>
                         <p>Opis wydarzenia</p>
-                        <p>{bestEvent[0].descLong}</p>
+                        <p>{bestEvent.descLong}</p>
                     </Col>
                     <Col xs={12}>
                         <Col xs={12} sm={6}>
