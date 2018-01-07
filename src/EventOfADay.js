@@ -6,7 +6,7 @@ import {
     Button,
     Col,
     Clearfix,
-    Carousel
+    Carousel,
 } from 'react-bootstrap'
 
 import './EventOfADay.css'
@@ -56,27 +56,26 @@ class EventOfADay extends Component {
                 <hr/>
                 {bestEvent &&
                 <div>
-                    <h4>{bestEvent[0].name}</h4>
+                    <h3>{bestEvent[0].name}</h3>
                     <Col xs={12} sm={6}>
-                        {/*<a href={bestEvent[0].urls.www}>*/}
-                            {/*<img src={bestEvent[0].attachments[0].fileName} class="img-responsive"/>*/}
-                        {/*</a>*/}
-                        <Carousel controls={false} indicators={false}>
-                            {
-                                (bestEvent[0].attachments)
-                                    .map(
-                                        attachment =>
-                                            <Carousel.Item>
-                                                <img src={attachment.fileName}/>
-                                            </Carousel.Item>
-                                    )
-                            }
-                        </Carousel>
+                        <a href={bestEvent[0].urls.www}>
+                            <Carousel controls={false} indicators={false}>
+                                {
+                                    (bestEvent[0].attachments)
+                                        .map(
+                                            attachment =>
+                                                <Carousel.Item>
+                                                    <img src={attachment.fileName}/>
+                                                </Carousel.Item>
+                                        )
+                                }
+                            </Carousel>
+                        </a>
                     </Col>
                     <Col xs={12} sm={6} className="EventOfADay_info">
                         <p>Start: {moment(bestEvent[0].startDate).format('H:mm')}</p>
                         <p>Koniec: {moment(bestEvent[0].endDate).format('H:mm')}</p>
-                        <p>Miejsce:{bestEvent[0].place.name}</p>
+                        <p>Miejsce: {bestEvent[0].place.name}</p>
                         <p>{bestEvent[0].place.subname}</p>
                         {bestEvent[0].tickets.type ?
                             <p>Płatne:&nbsp;
@@ -103,42 +102,6 @@ class EventOfADay extends Component {
                     </Col>
                 </div>
                 }
-
-                {/*below listing all events*/}
-                <Col xs={12} align="left">
-                    <ol>
-                        {
-                            (this.props.eventofaday.data || [])
-                                .filter(
-                                    event =>
-                                        event.tickets.endTicket >= this.state.maximumPriceToday
-                                )
-                                .map(
-                                    event =>
-                                        (
-                                            <li key={event.id}>
-                                                {/*<p>{event.place}</p>*/}
-                                                {/*<p>{event.endDate}</p>*/}
-                                                <p>{event.name}</p>
-                                                {/*<p>{event.urls}</p>*/}
-                                                {/*<p>{event.attachments}</p>*/}
-                                                {/*<p>{event.descLong}</p>*/}
-                                                {/*<p>{event.categoryId}</p>*/}
-                                                <p>{event.startDate}</p>
-                                                {/*<p>{event.organizer}</p>*/}
-                                                {/*<p>{event.active}</p>*/}
-                                                <p>{event.tickets.startTicket
-                                                + ' - '
-                                                + event.tickets.endTicket}
-                                                </p>
-
-                                            </li>
-                                        )
-                                )
-                        }
-                    </ol>
-                    <hr/>
-                </Col>
             </div>
         )
     }
