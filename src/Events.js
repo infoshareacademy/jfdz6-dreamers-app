@@ -41,7 +41,6 @@ class Events extends React.Component {
     };
 
     render() {
-        //console.warn('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.props.events)
         return (
             <div>
                 <h1>Events</h1>
