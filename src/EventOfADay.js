@@ -17,13 +17,10 @@ import {getEventOfADay} from './state/eventofaday'
 
 class EventOfADay extends Component {
 
-    constructor() {
-        super();
-        this.state = {
+    state = {
             eventofaday: [],
             maximumPriceToday: null,
             bestEvent: null
-        }
     }
 
     componentDidMount() {
