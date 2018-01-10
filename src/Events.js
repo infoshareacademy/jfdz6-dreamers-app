@@ -8,13 +8,12 @@ class Events extends React.Component {
         events: [],
         deleting: false,
         error: null,
-        dateFrom: new Date(),
+        dateFrom: null,
         dateTo: new Date(+new Date() + 86400000),
         selectedRadio: 'tickets'
     }
 
     componentDidMount() {
-        console.log('mounts')
         this.props.getEvents(this.state.dateFrom, this.state.dateTo)
     }
 
@@ -48,7 +47,7 @@ class Events extends React.Component {
                 <hr/>
                 <DatePicker
                     onChange={this.onChange1}
-                    value={this.state.dateFrom}
+                    value={this.state.dateFrom || new Date() }
                 />
                 <DatePicker
                     onChange={this.onChange2}
@@ -96,7 +95,6 @@ class Events extends React.Component {
                 }
 
                 <ol>
-                    {console.log('data',this.props.events.data)}
                     {
                         (this.props.events.data || [])
                             .filter(event => event.tickets.type === this.state.selectedRadio)
