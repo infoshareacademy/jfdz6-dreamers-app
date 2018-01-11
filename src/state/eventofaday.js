@@ -1,20 +1,20 @@
+import moment from 'moment'
+
 const GETEVENT_BEGIN = 'eventofaday/GETEVENT_BEGIN'
 const GETEVENT_SUCCESS = 'eventofaday/GETEVENT_SUCCESS'
 const GETEVENT_FAIL = 'eventofaday/GETEVENT_FAIL'
 
 export const getEventOfADay = dayE => dispatch => {
 
-    var today = new Date().toJSON().slice(0,10)
-    var date = new Date()
-    date.setDate(date.getDate() + 1)
-    var tomorrow = date.toJSON().slice(0,10);
+    var today = moment().format('YYYY-MM-DD');
+    var tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
     console.log(today)
     console.log(tomorrow)
 
 
 
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+today+'&end_date='+tomorrow+'&startTicket=10&limit=100';
+        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+today+'&end_date='+tomorrow+'&limit=100';
 
     dispatch({ type: GETEVENT_BEGIN })
     return fetch(
