@@ -1,6 +1,6 @@
 .EventOfADay_image {
-    border: 1px orange solid;
-    padding: 0px;
+    max-height: 560px;
+    margin: auto;
 }
 
 .EventOfADay_info {
