@@ -110,7 +110,7 @@ class EventOfADay extends Component {
                     </Row>
 
                     <Row className="show-grid">
-                        <Col className="text-left">
+                        <Col className="text-left EventOfADay_describe">
                             <p>{bestEvent.descLong.replace(/<[^>]*>/g, ' ')}</p>
                         </Col>
                     </Row>
@@ -118,7 +118,7 @@ class EventOfADay extends Component {
                     <Row className="show-grid">
                         <Col xs={12}>
                             <Col xs={12} sm={6}>
-                                <p>Liczba osób, która zapisała się na wydarzenie</p>
+                                <p>Liczba osób, która zapisała się na wydarzenie: 0</p>
                             </Col>
                             <Col xs={12} sm={6}>
                                 <Button bsStyle="success">Zapisz wydarzenie</Button>

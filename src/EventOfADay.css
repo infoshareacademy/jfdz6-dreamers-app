@@ -7,3 +7,9 @@
 .EventOfADay_info {
     text-align: left;
 }
+
+.EventOfADay_describe {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 30px;
+}
