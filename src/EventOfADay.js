@@ -99,9 +99,8 @@ class EventOfADay extends Component {
                      </Row>
 
                     <Row className="show-grid">
-                        <Col>
-                            <p>Opis wydarzenia</p>
-                            <p>{bestEvent.descLong}</p>
+                        <Col className="text-left">
+                            <p>{bestEvent.descLong.replace(/<[^>]*>/g, '')}</p>
                         </Col>
                     </Row>
 
