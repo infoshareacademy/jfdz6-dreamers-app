@@ -1,6 +1,7 @@
 .EventOfADay_image {
     max-height: 560px;
     margin: auto;
+    margin-bottom: 30px;
 }
 
 .EventOfADay_info {

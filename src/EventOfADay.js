@@ -8,6 +8,7 @@ import {
     Col,
     Carousel,
     Button,
+    Well,
 } from 'react-bootstrap'
 
 import './EventOfADay.css'
@@ -79,19 +80,21 @@ class EventOfADay extends Component {
                             </a>
                         </Col>
                         <Col xs={12} sm={3} className="EventOfADay_info">
+                            <Well bsSize="large">
                             <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
-                            <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
-                            <p>Miejsce: {bestEvent.place.name}</p>
-                            <p>{bestEvent.place.subname}</p>
-                            {bestEvent.tickets.type ?
-                                <p>Płatne:&nbsp;
-                                    {bestEvent.tickets.startTicket}
-                                    &nbsp;-&nbsp;
-                                    {bestEvent.tickets.endTicket}
-                                    &nbsp;PLN
-                                </p> :
-                                <p>Bezpłatne</p>
-                            }
+                                <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
+                                <p>Miejsce: {bestEvent.place.name}</p>
+                                <p>{bestEvent.place.subname}</p>
+                                {bestEvent.tickets.type ?
+                                    <p>Płatne:&nbsp;
+                                        {bestEvent.tickets.startTicket}
+                                        &nbsp;-&nbsp;
+                                        {bestEvent.tickets.endTicket}
+                                        &nbsp;PLN
+                                    </p> :
+                                    <p>Bezpłatne</p>
+                                }
+                            </Well>
                         </Col>
                      </Row>
 
