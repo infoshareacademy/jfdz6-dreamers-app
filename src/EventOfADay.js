@@ -75,8 +75,9 @@ class EventOfADay extends Component {
 
                     <Row className="show-grid">
                         <Col xs={12} sm={9}>
+
                             <a href={bestEvent.urls.www}>
-                                <Carousel controls={false} indicators={false}>
+                                <Carousel controls={false} indicators={false} interval={3000}>
                                     {
                                         (bestEvent.attachments)
                                             .map(
