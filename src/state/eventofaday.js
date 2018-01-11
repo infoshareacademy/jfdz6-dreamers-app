@@ -14,7 +14,7 @@ export const getEventOfADay = dayE => dispatch => {
 
 
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+today+'&end_date='+tomorrow+'&startTicket=10&limit=100';
+        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+today+'&end_date='+tomorrow+'&limit=100';
 
     dispatch({ type: GETEVENT_BEGIN })
     return fetch(

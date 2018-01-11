@@ -38,13 +38,23 @@ class EventOfADay extends Component {
             const myBestEvent = (eventofaday.data)
                 .filter(
                     event =>
-                        event.tickets.endTicket >= maximumVipTicketPrice
+                        (event.tickets.endTicket >= maximumVipTicketPrice) && (event.attachments.length > 0)
                 );
-            console.log(myBestEvent)
-            this.setState({
-                maximumPriceToday: maximumVipTicketPrice,
-                bestEvent: myBestEvent
-            })
+            if (myBestEvent.length > 0) {
+                this.setState({
+                    maximumPriceToday: maximumVipTicketPrice,
+                    bestEvent: myBestEvent
+                })
+            } else {
+                this.setState({
+                    maximumPriceToday: 0,
+                    bestEvent: eventofaday.data
+                        .filter(
+                            event =>
+                                event.attachments.length > 0
+                        )
+                })
+            }
         }
     }
 
@@ -72,7 +82,8 @@ class EventOfADay extends Component {
                                             .map(
                                                 attachment =>
                                                     <Carousel.Item>
-                                                        <img src={attachment.fileName} className="responsive, EventOfADay_image"/>
+                                                        <img src={attachment.fileName}
+                                                             className="responsive, EventOfADay_image"/>
                                                     </Carousel.Item>
                                             )
                                     }
@@ -81,11 +92,11 @@ class EventOfADay extends Component {
                         </Col>
                         <Col xs={12} sm={3} className="EventOfADay_info">
                             <Well bsSize="large">
-                            <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
+                                <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
                                 <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
                                 <p>Miejsce: {bestEvent.place.name}</p>
                                 <p>{bestEvent.place.subname}</p>
-                                {bestEvent.tickets.type ?
+                                {bestEvent.tickets.type === 'tickets' ?
                                     <p>Płatne:&nbsp;
                                         {bestEvent.tickets.startTicket}
                                         &nbsp;-&nbsp;
@@ -96,11 +107,11 @@ class EventOfADay extends Component {
                                 }
                             </Well>
                         </Col>
-                     </Row>
+                    </Row>
 
                     <Row className="show-grid">
                         <Col className="text-left">
-                            <p>{bestEvent.descLong.replace(/<[^>]*>/g, '')}</p>
+                            <p>{bestEvent.descLong.replace(/<[^>]*>/g, ' ')}</p>
                         </Col>
                     </Row>
 
