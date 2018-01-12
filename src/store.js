@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import persistState from 'redux-localstorage'
 import events from './state/events'
 import eventofaday from './state/eventofaday'
+import myevents from './state/myevents'
 import firebase from 'firebase'
 import auth from './state/auth'
 
@@ -28,7 +29,8 @@ const enhancer = composeEnhancers(
 const reducer = combineReducers({
     auth,
     events,
-    eventofaday
+    eventofaday,
+    myevents
 })
 
 const store = createStore(

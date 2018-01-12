@@ -17,6 +17,7 @@ import {
 
 import EventOfADay from './EventOfADay'
 import SearchEvents from './Events'
+import MyEvents from './MyEvents'
 import SignInUp from "./SignInUp";
 import firebase from 'firebase'
 import auth from './state/auth'
@@ -81,14 +82,6 @@ const Home = () => (
     </div>
 )
 
-
-const MyEvents = () => (
-    <div>
-        <h2>My events</h2>
-        <p>Układ jak na stronie wyszukiwarki wydarzeń (z filtrami), plus przycisk umożliwiający usunięcie wydarzenia z
-            listy moich wydarzeń</p>
-    </div>
-)
 
 const Login = () => (
     <div>

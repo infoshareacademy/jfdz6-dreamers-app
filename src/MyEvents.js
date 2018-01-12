@@ -15,52 +15,34 @@ import './EventOfADay.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
-import {getEventOfADay} from './state/eventofaday'
+import {getMyEvents} from './state/myevents'
+import myevents from "./state/myevents";
 
-class EventOfADay extends Component {
+class MyEvents extends Component {
 
     state = {
-        eventofaday: [],
+        myevents: [],
         maximumPriceToday: null,
-        bestEvent: null
+        personalEvents: null
     }
 
-
-    componentDidMount() {
-        const {eventofaday} = this.props; //destructuring
-        this.props.getEventOfADay('a');
-        if (eventofaday.data.length > 0) {console.log(eventofaday)
-
-            const maximumVipTicketPrice = eventofaday.data.reduce(
-                (max, event) =>
-                    parseInt(event.tickets.endTicket) > max ?
-                        parseInt(event.tickets.endTicket) : max
-                , 0)
-            const myBestEvent = (eventofaday.data)
-                .filter(
-                    event =>
-                        (event.tickets.endTicket >= maximumVipTicketPrice) && (event.attachments.length > 0)
-                );
-            if (myBestEvent.length > 0) {
-                this.setState({
-                    maximumPriceToday: maximumVipTicketPrice,
-                    bestEvent: myBestEvent
-                })
-            } else {
-                this.setState({
-                    maximumPriceToday: 0,
-                    bestEvent: eventofaday.data
-                        .filter(
-                            event =>
-                                event.attachments.length > 0
-                        )
-                })
-            }
-        }
+    componentWillMount() {
+        const {myevents} = this.props; //destructuring
+        this.props.getMyEvents('a');
+        console.log(myevents)
+    //     const myEvents = (myevents.data)
+    //          .filter(
+    //             event =>
+    //                 (true)
+    //         );
+    //      console.log(myEvents)
+    //     this.setState({
+    //         personalEvents: myEvents
+    //     })
     }
 
     render() {
-        const bestEvent = this.state.bestEvent && this.state.bestEvent[0]; //destructuring
+        const myPersonalEvents = this.state.personalEvents && this.state.personalEvents[0]; //destructuring
         return (
             <Grid>
                 <Row className="show-grid">
@@ -68,19 +50,19 @@ class EventOfADay extends Component {
                     <hr/>
                 </Row>
 
-                {bestEvent &&
+                {myPersonalEvents &&
                 <div>
                     <Row className="show-grid">
-                        <h3>{bestEvent.name}</h3>
+                        <h3>{myPersonalEvents.name}</h3>
                     </Row>
 
                     <Row className="show-grid">
                         <Col xs={12} sm={9}>
 
-                            <a href={bestEvent.urls.www}>
+                            <a href={myPersonalEvents.urls.www}>
                                 <Carousel controls={false} indicators={false} interval={3000}>
                                     {
-                                        (bestEvent.attachments)
+                                        (myPersonalEvents.attachments)
                                             .map(
                                                 attachment =>
                                                     <Carousel.Item>
@@ -94,15 +76,15 @@ class EventOfADay extends Component {
                         </Col>
                         <Col xs={12} sm={3} className="EventOfADay_info">
                             <Well bsSize="large">
-                                <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
-                                <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
-                                <p>Miejsce: {bestEvent.place.name}</p>
-                                <p>{bestEvent.place.subname}</p>
-                                {bestEvent.tickets.type === 'tickets' ?
+                                <p>Start: {moment(myPersonalEvents.startDate).format('H:mm')}</p>
+                                <p>Koniec: {moment(myPersonalEvents.endDate).format('H:mm')}</p>
+                                <p>Miejsce: {myPersonalEvents.place.name}</p>
+                                <p>{myPersonalEvents.place.subname}</p>
+                                {myPersonalEvents.tickets.type === 'tickets' ?
                                     <p>Płatne:&nbsp;
-                                        {bestEvent.tickets.startTicket}
+                                        {myPersonalEvents.tickets.startTicket}
                                         &nbsp;-&nbsp;
-                                        {bestEvent.tickets.endTicket}
+                                        {myPersonalEvents.tickets.endTicket}
                                         &nbsp;PLN
                                     </p> :
                                     <p>Bezpłatne</p>
@@ -113,7 +95,7 @@ class EventOfADay extends Component {
 
                     <Row className="show-grid">
                         <Col className="text-left EventOfADay_describe">
-                            <p>{bestEvent.descLong.replace(/<[^>]*>/g, ' ')}</p>
+                            <p>{myPersonalEvents.descLong.replace(/<[^>]*>/g, ' ')}</p>
                         </Col>
                     </Row>
 
@@ -136,15 +118,15 @@ class EventOfADay extends Component {
 
 
 const mapStateToProps = state => ({
-    eventofaday: state.eventofaday
+    myevents: state.myevents
 })
 
 const mapDispatchToProps = dispatch => ({
-    getEventOfADay: (dayE) => dispatch(getEventOfADay(dayE))
+    getMyEvents: (dayM) => dispatch(getMyEvents(dayM))
 })
 
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(EventOfADay)
+)(MyEvents)

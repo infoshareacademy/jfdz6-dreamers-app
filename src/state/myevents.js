@@ -1,33 +1,30 @@
 import moment from 'moment'
 
-const GETEVENT_BEGIN = 'eventofaday/GETEVENT_BEGIN'
-const GETEVENT_SUCCESS = 'eventofaday/GETEVENT_SUCCESS'
-const GETEVENT_FAIL = 'eventofaday/GETEVENT_FAIL'
+const MYEVENTS_BEGIN = 'myevents/MYEVENTS_BEGIN'
+const MYEVENTS_SUCCESS = 'myevents/MYEVENTS_SUCCESS'
+const MYEVENTS_FAIL = 'myevents/MYEVENTS_FAIL'
 
-export const getEventOfADay = dayE => dispatch => {
+export const getMyEvents = dayM => dispatch => {
 
     var today = moment().format('YYYY-MM-DD');
-    var tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
-    console.log(today)
-    console.log(tomorrow)
+    var monthago = moment().add(-1, 'months').format('YYYY-MM-DD');
 
 
 
     var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+today+'&end_date='+tomorrow+'&limit=100';
+        targetUrl = 'http://planer.info.pl/api/rest/events.json?start_date='+monthago+'&end_date='+today+'&limit=1999';
 
-    dispatch({ type: GETEVENT_BEGIN })
+    dispatch({ type: MYEVENTS_BEGIN })
     return fetch(
         proxyUrl + targetUrl
     ).then(
         response => response.json()
     ).then(
-        data => dispatch({ type: GETEVENT_SUCCESS, data })
+        data => dispatch({ type: MYEVENTS_SUCCESS, data })
     ).catch(
-        error => dispatch({ type: GETEVENT_FAIL, error })
+        error => dispatch({ type: MYEVENTS_FAIL, error })
     )
 }
-
 
 const initialState = {
     data: null,
@@ -37,19 +34,19 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
-        case GETEVENT_BEGIN:
+        case MYEVENTS_BEGIN:
             return {
                 ...state,
                 getting: true,
                 error: null
             }
-        case GETEVENT_SUCCESS:
+        case MYEVENTS_SUCCESS:
             return {
                 ...state,
                 data: action.data,
                 getting: false
             }
-        case GETEVENT_FAIL:
+        case MYEVENTS_FAIL:
             return {
                 ...state,
                 getting: false,
