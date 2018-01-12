@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import moment from 'moment'
+import moment from 'moment';
+import {PulseLoader} from 'react-spinners';
+
 
 import {
     Grid,
@@ -73,22 +75,33 @@ class EventOfADay extends Component {
                         <h3>{bestEvent.name}</h3>
                     </Row>
 
-                    <Row className="show-grid">
+                    <Row className="show-grid H560">
                         <Col xs={12} sm={9}>
-
                             <a href={bestEvent.urls.www}>
+                                {console.log(bestEvent.attachments.length),
+                                    (bestEvent.attachments.length === 'undefined') ?
+                                <div className="responsive EventOfADay_spinner" >
+                                    <PulseLoader
+                                        color={'lightgrey'}
+                                        size={'45'}
+                                        loading={true}
+                                    />
+                                </div>
+                                :
                                 <Carousel controls={false} indicators={false} interval={3000}>
                                     {
                                         (bestEvent.attachments)
                                             .map(
                                                 attachment =>
                                                     <Carousel.Item>
+                                                        {console.log(attachment.fileName)}
                                                         <img src={attachment.fileName}
-                                                             className="responsive, EventOfADay_image"/>
+                                                             className="responsive EventOfADay_image" />
                                                     </Carousel.Item>
                                             )
                                     }
                                 </Carousel>
+                                }
                             </a>
                         </Col>
                         <Col xs={12} sm={3} className="EventOfADay_info">

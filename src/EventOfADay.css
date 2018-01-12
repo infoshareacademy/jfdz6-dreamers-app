@@ -1,8 +1,19 @@
-.EventOfADay_image {
+.EventOfADay_image,
+.EventOfADay_spinner {
     height: 560px;
     max-height: 560px;
     margin: auto;
+
+    background-color: green;
+}
+
+.H560 {
+    height: 560px;
+    max-height: 560px;
     margin-bottom: 30px;
+}
+.EventOfADay_spinner {
+    padding-top: 250px;
 }
 
 .EventOfADay_info {
