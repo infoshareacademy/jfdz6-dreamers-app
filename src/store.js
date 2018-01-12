@@ -3,6 +3,8 @@ import thunk from 'redux-thunk'
 import persistState from 'redux-localstorage'
 import events from './state/events'
 import eventofaday from './state/eventofaday'
+import firebase from 'firebase'
+import auth from './state/auth'
 
 // Initialize Firebase
 var config = {
