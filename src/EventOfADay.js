@@ -25,11 +25,15 @@ class EventOfADay extends Component {
         bestEvent: null
     }
 
+    componentDidMount(){
+      this.props.getEventOfADay('a');
+    }
 
-    componentDidMount() {
-        const {eventofaday} = this.props; //destructuring
-        this.props.getEventOfADay('a');
-        if (eventofaday.data.length > 0) {
+
+  componentWillReceiveProps(nextProps) {
+        const {eventofaday} = nextProps; //destructuring
+
+        if (eventofaday.data && eventofaday.data.length > 0) {
             const maximumVipTicketPrice = eventofaday.data.reduce(
                 (max, event) =>
                     parseInt(event.tickets.endTicket) > max ?
@@ -57,6 +61,7 @@ class EventOfADay extends Component {
             }
         }
     }
+
 
     render() {
         const bestEvent = this.state.bestEvent && this.state.bestEvent[0]; //destructuring
