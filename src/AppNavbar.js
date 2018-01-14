@@ -7,7 +7,10 @@ import {
   Navbar,
   Nav,
   NavItem,
-  Carousel
+  Carousel,
+  Image,
+  Grid,
+  Row
 } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -19,6 +22,11 @@ import {
 
 import EventOfADay from './EventOfADay'
 import SearchEvents from './Events'
+
+import fest1 from './img/image-fest1.jpg';
+import fest2 from './img/image-fest2.jpg';
+import fest3 from './img/image-fest3.jpg';
+
 
 const AppNavbar = () => (
       <Router>
@@ -66,36 +74,32 @@ const AppNavbar = () => (
 
     const Home = () => (
       <div>
-        <h2>Dreamers</h2>
-        <p>Karuzela, taka jak na stronie Dreamers</p>
-        <p>1 slajd - wydarzenie dnia</p>
-        <p>2 slajd - wyszukiwarka</p>
-        <p>3 slajd - moje wydarzenia</p>
-
+        <h1>Trójmiejski Kalendarz Imprez</h1>
+        <h3>Najlepsza wyszukiwarka - najlepsze Imprezy</h3>
+<Grid>
+  <Row>
         <Carousel>
           <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="../img/image-fest1.jpg" />
+            <Image style={{margin:"0 auto"}} width={1200} src={fest1} responsive />
             <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h2 style={{color: "rgb(250, 175, 24)"}}>Siedzisz w domu i zastanawiasz się co robić?</h2>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="/img/image-fest2.jpg" />
+            <Image style={{margin:"0 auto"}} width={1200} src={fest2} responsive />
             <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h2 style={{color: "rgb(250, 175, 24)"}}>Wyszukaj wydarzenia, które Cię interesują.</h2>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img width={900} height={500} alt="900x500" src="/img/image-fest3.jpg" />
+            <Image style={{margin:"0 auto"}} width={1200} src={fest3} responsive />
             <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+              <h2 style={{color: "rgb(250, 175, 24)"}}>Nie czekaj i z nami planuj!</h2>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-
+  </Row>
+</Grid>
 
       </div>
     )
