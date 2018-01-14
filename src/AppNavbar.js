@@ -82,19 +82,25 @@ const AppNavbar = () => (
           <Carousel.Item>
             <Image style={{margin:"0 auto"}} width={1200} src={fest1} responsive />
             <Carousel.Caption>
+              <div style={{"background-color": "rgba(0,0,0,0.9)", padding: "0px"}}>
               <h2 style={{color: "rgb(250, 175, 24)"}}>Siedzisz w domu i zastanawiasz się co robić?</h2>
+              </div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <Image style={{margin:"0 auto"}} width={1200} src={fest2} responsive />
             <Carousel.Caption>
+              <div style={{"background-color": "rgba(0,0,0,0.9)", padding: "0px"}}>
               <h2 style={{color: "rgb(250, 175, 24)"}}>Wyszukaj wydarzenia, które Cię interesują.</h2>
+              </div>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <Image style={{margin:"0 auto"}} width={1200} src={fest3} responsive />
             <Carousel.Caption>
+              <div style={{"background-color": "rgba(0,0,0,0.9)", padding: "0px"}}>
               <h2 style={{color: "rgb(250, 175, 24)"}}>Nie czekaj i z nami planuj!</h2>
+              </div>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
