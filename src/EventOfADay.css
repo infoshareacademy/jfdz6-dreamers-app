@@ -1,0 +1,15 @@
+.EventOfADay_image {
+    max-height: 560px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.EventOfADay_info {
+    text-align: left;
+}
+
+.EventOfADay_describe {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 30px;
+}

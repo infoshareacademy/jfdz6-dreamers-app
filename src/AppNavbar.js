@@ -17,6 +17,9 @@ import {
   LinkContainer
 } from 'react-router-bootstrap'
 
+import EventOfADay from './EventOfADay'
+import SearchEvents from './Events'
+
 const AppNavbar = () => (
       <Router>
         <div>
@@ -94,20 +97,6 @@ const AppNavbar = () => (
         </Carousel>
 
 
-      </div>
-    )
-
-    const EventOfADay = () => (
-      <div>
-        <h2>Event of a day</h2>
-        <p> Wydarzenie dnia a dokładnym opisem, jak na stronie Bubble</p>
-      </div>
-    )
-
-    const SearchEvents = () => (
-      <div>
-        <h2>Search Events</h2>
-        <p>Wyszukiwarka z filtrami</p>
       </div>
     )
 
