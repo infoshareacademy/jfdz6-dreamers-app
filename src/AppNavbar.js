@@ -59,7 +59,6 @@ const AppNavbar = () => (
             </Nav>
           </Navbar>
 
-          <hr/>
 
           <Route exact path="/" component={Home}/>
           <Route path="/eventofaday" component={EventOfADay}/>
