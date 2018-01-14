@@ -25,11 +25,15 @@ class EventOfADay extends Component {
         bestEvent: null
     }
 
+    componentDidMount(){
+      this.props.getEventOfADay('a');
+    }
 
-    componentDidMount() {
-        const {eventofaday} = this.props; //destructuring
-        this.props.getEventOfADay('a');
-        if (eventofaday.data.length > 0) {
+
+  componentWillReceiveProps(nextProps) {
+        const {eventofaday} = nextProps; //destructuring
+
+        if (eventofaday.data && eventofaday.data.length > 0) {
             const maximumVipTicketPrice = eventofaday.data.reduce(
                 (max, event) =>
                     parseInt(event.tickets.endTicket) > max ?
@@ -58,6 +62,7 @@ class EventOfADay extends Component {
         }
     }
 
+
     render() {
         const bestEvent = this.state.bestEvent && this.state.bestEvent[0]; //destructuring
         return (
@@ -68,13 +73,13 @@ class EventOfADay extends Component {
                 </Row>
 
                 {bestEvent &&
-                <div>
+                <div className="EventOfADay_main">
                     <Row className="show-grid">
                         <h3>{bestEvent.name}</h3>
                     </Row>
 
                     <Row className="show-grid">
-                        <Col xs={12} sm={9}>
+                        <Col xs={12} sm={12} md={9}>
                             <a href={bestEvent.urls.www}>
                                 <Carousel controls={false} indicators={false}>
                                     {
@@ -90,7 +95,7 @@ class EventOfADay extends Component {
                                 </Carousel>
                             </a>
                         </Col>
-                        <Col xs={12} sm={3} className="EventOfADay_info">
+                        <Col xs={12} sm={12} md={3} className="EventOfADay_info">
                             <Well bsSize="large">
                                 <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
                                 <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>

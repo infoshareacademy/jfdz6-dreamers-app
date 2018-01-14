@@ -1,4 +1,5 @@
 .EventOfADay_image {
+    height: 560px;
     max-height: 560px;
     margin: auto;
     margin-bottom: 30px;
@@ -12,4 +13,29 @@
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 30px;
+}
+
+.EventOfADay_main {
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    .EventOfADay_image {
+        height: 465px;
+        max-height: 465px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px){
+    .EventOfADay_image {
+        height: 465px;
+        max-height: 465px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .EventOfADay_image {
+        height: 465px;
+        max-height: 465px;
+    }
 }
