@@ -6,10 +6,15 @@ import {
 import {
   Navbar,
   Nav,
-  NavItem
+  NavItem,
+  Carousel,
+  Image,
+  Grid,
+  Row
 } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import './App.css';
 
 import {
   LinkContainer
@@ -18,10 +23,15 @@ import {
 import EventOfADay from './EventOfADay'
 import SearchEvents from './Events'
 
+import fest1 from './img/image-fest1.jpg';
+import fest2 from './img/image-fest2.jpg';
+import fest3 from './img/image-fest3.jpg';
+
+
 const AppNavbar = () => (
       <Router>
         <div>
-          <Navbar>
+          <Navbar inverse>
             <Navbar.Header>
               <Navbar.Brand>
                 <a href="/">Dreamers</a>
@@ -49,7 +59,6 @@ const AppNavbar = () => (
             </Nav>
           </Navbar>
 
-          <hr/>
 
           <Route exact path="/" component={Home}/>
           <Route path="/eventofaday" component={EventOfADay}/>
@@ -64,11 +73,39 @@ const AppNavbar = () => (
 
     const Home = () => (
       <div>
-        <h2>Dreamers</h2>
-        <p>Karuzela, taka jak na stronie Dreamers</p>
-        <p>1 slajd - wydarzenie dnia</p>
-        <p>2 slajd - wyszukiwarka</p>
-        <p>3 slajd - moje wydarzenia</p>
+        <h1>Trójmiejski Kalendarz Imprez</h1>
+        <h3>Najlepsza wyszukiwarka - najlepsze Imprezy</h3>
+<Grid>
+  <Row>
+        <Carousel>
+          <Carousel.Item>
+            <Image style={{margin:"0 auto"}} width={1200} src={fest1} responsive />
+            <Carousel.Caption>
+              <div style={{"background-color": "rgba(0,0,0,0.9)", padding: "0px"}}>
+              <h2 style={{color: "rgb(250, 175, 24)"}}>Siedzisz w domu i zastanawiasz się co robić?</h2>
+              </div>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <Image style={{margin:"0 auto"}} width={1200} src={fest2} responsive />
+            <Carousel.Caption>
+              <div style={{"background-color": "rgba(0,0,0,0.9)", padding: "0px"}}>
+              <h2 style={{color: "rgb(250, 175, 24)"}}>Wyszukaj wydarzenia, które Cię interesują.</h2>
+              </div>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <Image style={{margin:"0 auto"}} width={1200} src={fest3} responsive />
+            <Carousel.Caption>
+              <div style={{"background-color": "rgba(0,0,0,0.9)", padding: "0px"}}>
+              <h2 style={{color: "rgb(250, 175, 24)"}}>Nie czekaj i z nami planuj!</h2>
+              </div>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+  </Row>
+</Grid>
+
       </div>
     )
 

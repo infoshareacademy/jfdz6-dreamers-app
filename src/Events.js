@@ -43,7 +43,7 @@ class Events extends React.Component {
         return (
             <div>
                 <h1>Events</h1>
-                <hr/>
+
                 <DatePicker
                     onChange={this.onChange1}
                     value={this.state.dateFrom || new Date() }
@@ -52,7 +52,7 @@ class Events extends React.Component {
                     onChange={this.onChange2}
                     value={this.state.dateTo}
                 />
-                <hr/>
+
 
                 <div className="radio-row">
                     <div className="input-row">
@@ -84,7 +84,7 @@ class Events extends React.Component {
                         <label htmlFor="unknown">Nie określone</label>
                     </div>
                 </div>
-            <hr/>
+
                 {
                     this.state.error && <p>{this.state.error.message}</p>
                 }
