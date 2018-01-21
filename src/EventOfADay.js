@@ -68,7 +68,7 @@ class EventOfADay extends Component {
         return (
             <Grid>
                 <Row className="show-grid">
-                    <h2>Event of a day</h2>
+                    <h2>Wydarzenie Dnia</h2>
                 </Row>
 
                 {bestEvent &&
@@ -95,7 +95,7 @@ class EventOfADay extends Component {
                             </a>
                         </Col>
                         <Col xs={12} sm={12} md={3} className="EventOfADay_info">
-                            <Well bsSize="large">
+                            <Well style={{"background": "transparent", "border": "1px solid rgb(250, 175, 24)"}} bsSize="large" className="transparent">
                                 <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
                                 <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
                                 <p>Miejsce: {bestEvent.place.name}</p>
@@ -124,9 +124,9 @@ class EventOfADay extends Component {
                             <Col xs={12} sm={6}>
                                 <p>Liczba osób, która zapisała się na wydarzenie: 0</p>
                             </Col>
-                            <Col xs={12} sm={6}>
-                                <Button bsStyle="success">Zapisz wydarzenie</Button>
-                            </Col>
+                          <Col xs={12} sm={6}>
+                            <Button bsStyle="success">Zapisz wydarzenie</Button>
+                          </Col>
                         </Col>
                     </Row>
                 </div>
