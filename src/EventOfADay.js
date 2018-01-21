@@ -95,7 +95,7 @@ class EventOfADay extends Component {
                             </a>
                         </Col>
                         <Col xs={12} sm={12} md={3} className="EventOfADay_info">
-                            <Well bsSize="large">
+                            <Well style={{"background": "transparent", "border": "1px solid rgb(250, 175, 24)"}} bsSize="large" className="transparent">
                                 <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
                                 <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
                                 <p>Miejsce: {bestEvent.place.name}</p>
