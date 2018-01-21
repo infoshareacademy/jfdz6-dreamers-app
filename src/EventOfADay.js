@@ -68,7 +68,7 @@ class EventOfADay extends Component {
         return (
             <Grid>
                 <Row className="show-grid">
-                    <h2>Event of a day</h2>
+                    <h2>Wydarzenie Dnia</h2>
                 </Row>
 
                 {bestEvent &&
