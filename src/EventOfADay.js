@@ -124,9 +124,9 @@ class EventOfADay extends Component {
                             <Col xs={12} sm={6}>
                                 <p>Liczba osób, która zapisała się na wydarzenie: 0</p>
                             </Col>
-                            <Col xs={12} sm={6}>
-                                <Button bsStyle="success">Zapisz wydarzenie</Button>
-                            </Col>
+                          <Col xs={12} sm={6}>
+                            <Button bsStyle="success">Zapisz wydarzenie</Button>
+                          </Col>
                         </Col>
                     </Row>
                 </div>

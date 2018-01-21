@@ -112,7 +112,7 @@ const AppNavbar = () => (
 
     const MyEvents = () => (
       <div>
-        <h2>My events</h2>
+        <h2>Moje Wydarzenia</h2>
         <p>Układ jak na stronie wyszukiwarki wydarzeń (z filtrami), plus przycisk umożliwiający usunięcie wydarzenia z listy moich wydarzeń</p>
       </div>
     )
