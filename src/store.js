@@ -3,17 +3,29 @@ import thunk from 'redux-thunk'
 import persistState from 'redux-localstorage'
 import events from './state/events'
 import eventofaday from './state/eventofaday'
-
+import firebase from 'firebase'
+import auth,  { enableSync } from './state/auth'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBXgXdy_JGGCjKyCMiMBi6kJyjMS09bBCo",
+    authDomain: "dreamers-app.firebaseapp.com",
+    databaseURL: "https://dreamers-app.firebaseio.com",
+    projectId: "dreamers-app",
+    storageBucket: "dreamers-app.appspot.com",
+    messagingSenderId: "351013823342"
+};
+firebase.initializeApp(config);
 
 const enhancer = composeEnhancers(
     applyMiddleware(thunk),
-    persistState([]/* config*/),
+    persistState(['auth'], { key: 'JFDZ6' }),
 )
 
 const reducer = combineReducers({
+    auth,
     events,
     eventofaday
 })
@@ -24,6 +36,7 @@ const store = createStore(
 )
 
 store.dispatch({ type: 'RESET' })
+store.dispatch(enableSync())
 
 window.store = store
 
