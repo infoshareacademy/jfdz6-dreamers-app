@@ -1,0 +1,30 @@
+.Events_box {
+    height: 400px;
+    margin-bottom: 30px;
+    border: 3px solid black;
+    position: relative;
+    background-color: black;
+    border-radius: 8px;
+}
+
+.Events_title {
+     padding-top: 5px;
+}
+
+.Events_image {
+    height: 255px;
+}
+
+.Events_time {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.A {
+    pading-top: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
