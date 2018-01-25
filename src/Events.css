@@ -1,3 +1,43 @@
+.Events_filters {
+    margin: 15px;
+    padding: 5px 0;
+    color: black;
+    background-color: rgb(250, 175, 24);
+    border-radius: 8px;
+}
+
+.Events_filters > DatePicker {
+    margin-left: 20px;
+}
+
+.react-date-picker__calendar--open {
+  z-index: 100;
+}
+
+.Events_ticket {
+    background: transparent;
+    display: block;
+    text-align: left;
+}
+
+.Events_ticket > div > div {
+    display: block;
+}
+
+.Events_ticket > div > div > input {
+    margin-right: 10px;
+}
+
+.Events_date {
+    display: inline;
+}
+
+.Events_date > DatePicker {
+    display: inline;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .Events_box {
     height: 400px;
     margin-bottom: 30px;
@@ -6,7 +46,6 @@
     background-color: black;
     border-radius: 8px;
 }
-
 .Events_title {
      padding-top: 5px;
 }

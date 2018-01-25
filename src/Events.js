@@ -7,6 +7,7 @@ import {
     Row,
     Col,
     Image,
+    Well,
 } from 'react-bootstrap'
 
 import './Events.css'
@@ -54,48 +55,60 @@ class Events extends React.Component {
                     <h1>Wydarzenia</h1>
                 </Row>
 
-                <Row className="show-grid">
-                    <DatePicker
-                        onChange={this.onChange1}
-                        value={this.state.dateFrom || new Date()}
-                    />
-                    <DatePicker
-                        onChange={this.onChange2}
-                        value={this.state.dateTo}
-                    />
-                </Row>
-
-                <Row className="show-grid">
-                    <div className="radio-row">
-                        <div className="input-row">
-                            <input
-                                type="radio"
-                                name="free"
-                                value="free"
-                                checked={this.state.selectedRadio === 'free'}
-                                onChange={this.handleRadioChange}
+                <Row className="show-grid Events_filters">
+                    <Col xs={3} className="Events_date">
+                        <h1> Filtry</h1>
+                    </Col>
+                    <Col xs={6} className="Events_date">
+                        <h4> Wybierz zakres dat:</h4>
+                            Od:
+                            <DatePicker
+                                onChange={this.onChange1}
+                                value={this.state.dateFrom || new Date()}
                             />
-                            <label htmlFor="free">Darmowe</label>
-
-                            <input
-                                type="radio"
-                                name="tickets"
-                                value="tickets"
-                                checked={this.state.selectedRadio === 'tickets'}
-                                onChange={this.handleRadioChange}
+                            Do:
+                            <DatePicker
+                                onChange={this.onChange2}
+                                value={this.state.dateTo}
                             />
-                            <label htmlFor="tickets">Płatne</label>
-
-                            <input
-                                type="radio"
-                                name="unknown"
-                                value="unknown"
-                                checked={this.state.selectedRadio === 'unknown'}
-                                onChange={this.handleRadioChange}
-                            />
-                            <label htmlFor="unknown">Nie określone</label>
+                    </Col>
+                    <Col xs={3} className="Events_ticket">
+                        {/*<Well >*/}
+                        <h4> Wybierz typ biletu:</h4>
+                        <div className="radio-row">
+                            <div className="input-row">
+                                <input
+                                    type="radio"
+                                    name="free"
+                                    value="free"
+                                    checked={this.state.selectedRadio === 'free'}
+                                    onChange={this.handleRadioChange}
+                                />
+                                <label htmlFor="free">Darmowe</label>
+                            </div>
+                            <div className="input-row">
+                                <input
+                                    type="radio"
+                                    name="tickets"
+                                    value="tickets"
+                                    checked={this.state.selectedRadio === 'tickets'}
+                                    onChange={this.handleRadioChange}
+                                />
+                                <label htmlFor="tickets">Płatne</label>
+                            </div>
+                            <div className="input-row">
+                                <input
+                                    type="radio"
+                                    name="unknown"
+                                    value="unknown"
+                                    checked={this.state.selectedRadio === 'unknown'}
+                                    onChange={this.handleRadioChange}
+                                />
+                                <label htmlFor="unknown">Nie określone</label>
+                            </div>
                         </div>
-                    </div>
+                        {/*div                         </Well>*/}
+                    </Col>
                 </Row>
                 <Row className="show-grid">
                     {
@@ -127,8 +140,7 @@ class Events extends React.Component {
                                                     </a>
                                                 </div>
                                                 <div className="Events_time">
-                                                    <p>{`Data: ${getDateNode(event).slice(0, 10)}`}</p>
-                                                    <p>{getDateNode(event).slice(11, -3)}</p>
+                                                    <p>{`Data: ${getDateNode(event).slice(0, 10)} ${getDateNode(event).slice(11, -3)}`}</p>
                                                 </div>
                                             </p>
                                         </Col>
