@@ -6,48 +6,102 @@
     border-radius: 8px;
 }
 
+.Events_filters_title {
+    /*color: white;*/
+}
+
 .Events_filters > DatePicker {
     margin-left: 20px;
 }
 
 .react-date-picker__calendar--open {
-  z-index: 100;
+    z-index: 100;
 }
 
-.Events_ticket {
-    background: transparent;
+.react-date-picker__button {
+    background-color: white;
+    margin: 10px 25px 0 10px;
+    border: 2px;
+    border-radius: 5px;
+}
+
+.Events_date > p {
     display: block;
-    text-align: left;
 }
 
-.Events_ticket > div > div {
-    display: block;
+@media screen and (min-width: 768px) {
+    .react-date-picker__button {
+        margin: 5px 25px 0 10px;
+    }
+
+    .Events_date > p {
+        display: inline;
+    }
 }
 
-.Events_ticket > div > div > input {
-    margin-right: 10px;
-}
-
-.Events_date {
-    display: inline;
+@media screen and (min-width: 992px) {
+    .react-date-picker__button {
+        margin: 15px 25px 0 10px;
+    }
 }
 
 .Events_date > DatePicker {
-    display: inline;
     margin-left: 20px;
     margin-right: 20px;
 }
 
+.Events_ticket {
+    display: inline;
+    text-align: center;
+}
+
+.Events_ticket > div > div {
+    display: inline;
+}
+
+.Events_ticket > div > div > input {
+    margin-right: 5px;
+    margin-left: 20px;
+}
+
+@media screen and (min-width: 992px) {
+    .Events_ticket {
+        display: block;
+        text-align: left;
+    }
+
+    .Events_ticket > div > div {
+        display: block;
+    }
+
+    .Events_ticket > div > div > input {
+        margin-right: 10px;
+    }
+}
+
 .Events_box {
-    height: 400px;
+    height: 420px;
     margin-bottom: 30px;
     border: 3px solid black;
     position: relative;
     background-color: black;
     border-radius: 8px;
 }
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .Events_box {
+        height: 460px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .Events_box {
+        height: 420px;
+    }
+}
+
 .Events_title {
-     padding-top: 5px;
+    padding-top: 5px;
 }
 
 .Events_image {
@@ -61,9 +115,19 @@
     transform: translateX(-50%);
 }
 
-.A {
-    pading-top: 40px;
+.Events_image_link {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 992px) {
+    .Events_image_link {
+        padding-top: 25px;
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translateY(-50%);
+    }
 }

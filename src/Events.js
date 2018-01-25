@@ -56,23 +56,25 @@ class Events extends React.Component {
                 </Row>
 
                 <Row className="show-grid Events_filters">
-                    <Col xs={3} className="Events_date">
-                        <h1> Filtry</h1>
+                    <Col xs={12} sm={12} md={3} lg={3}>
+                        <h2 className="Events_filters_title">Filtry wyświetlania</h2>
                     </Col>
-                    <Col xs={6} className="Events_date">
+                    <Col xs={12} sm={12} md={6} lg={6} className="Events_date">
                         <h4> Wybierz zakres dat:</h4>
-                            Od:
+                        <p>Od:
                             <DatePicker
                                 onChange={this.onChange1}
                                 value={this.state.dateFrom || new Date()}
                             />
-                            Do:
+                        </p>
+                        <p>Do:
                             <DatePicker
                                 onChange={this.onChange2}
                                 value={this.state.dateTo}
                             />
+                        </p>
                     </Col>
-                    <Col xs={3} className="Events_ticket">
+                    <Col xs={12} sm={12}  md={3} lg={3} className="Events_ticket">
                         {/*<Well >*/}
                         <h4> Wybierz typ biletu:</h4>
                         <div className="radio-row">
@@ -136,7 +138,7 @@ class Events extends React.Component {
                                                 <div className="Events_image">
                                                     <a href={checkIfUrlExist(event)}>
                                                         <Image src={checkIfAttachmentExist(event)} responsive
-                                                               className="A"/>
+                                                               className="Events_image_link"/>
                                                     </a>
                                                 </div>
                                                 <div className="Events_time">
