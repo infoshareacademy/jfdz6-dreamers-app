@@ -1,0 +1,37 @@
+.SignIn_box {
+    margin: 15px;
+    padding: 25px 0 5px 0;
+    color: black;
+    background-color: rgb(250, 175, 24);
+    border-radius: 8px;
+
+}
+
+.SignIn_AuthForm > form {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.SignIn_AuthForm > form > input {
+    margin: 10px auto 25px auto;
+    display: block;
+    background-color: white;
+    border-radius: 5px;
+    height: 2em;
+    width: 20em;
+}
+.SignIn_AuthForm > form > button {
+    margin: 10px auto 30px auto;
+    display: block;
+    background-color: black;
+    border-radius: 5px;
+    height: 2em;
+    width: 6em;
+    color: rgb(250, 175, 24);
+}
+
+@media screen and (max-width: 480px) {
+    .SignIn_AuthForm > form > input {
+        width: 90%;
+    }
+}
