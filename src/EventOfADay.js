@@ -139,17 +139,6 @@ class EventOfADay extends Component {
                             <p>{bestEvent.descLong.replace(/<[^>]*>/g, ' ')}</p>
                         </Col>
                     </Row>
-
-                    <Row className="show-grid">
-                        <Col xs={12}>
-                            <Col xs={12} sm={6}>
-                                <p>Liczba osób, która zapisała się na wydarzenie: 0</p>
-                            </Col>
-                            <Col xs={12} sm={6}>
-                                <Button bsStyle="success">Zapisz wydarzenie</Button>
-                            </Col>
-                        </Col>
-                    </Row>
                 </div>
                 }
             </Grid>
