@@ -13,7 +13,7 @@ import {
 
 const SignOutButton = ({ shouldBeVisible, signOut }) => (
   shouldBeVisible &&
-    <LinkContainer to="/signup" onClick={signOut}>
+    <LinkContainer to="/signin" onClick={signOut}>
       <NavItem>Wyloguj</NavItem>
     </LinkContainer>
 )
