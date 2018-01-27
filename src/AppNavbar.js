@@ -49,12 +49,12 @@ const AppNavbar = ({user}) => (
                         <NavItem>Wyszukiwarka</NavItem>
                     </LinkContainer>
 
-                    {
-                        user &&
-                        <LinkContainer to="/myevents">
-                            <NavItem>Moje wydarzenia</NavItem>
-                        </LinkContainer>
-                    }
+                    {/*{*/}
+                        {/*user &&*/}
+                        {/*<LinkContainer to="/myevents">*/}
+                            {/*<NavItem>Moje wydarzenia</NavItem>*/}
+                        {/*</LinkContainer>*/}
+                    {/*}*/}
                 </Nav>
                 <Nav pullRight>
                     {
