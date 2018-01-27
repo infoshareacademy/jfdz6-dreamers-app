@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 import AppNavbar, {Home} from './AppNavbar'
 import {
-    BrowserRouter as Router,
-    Route
+    Router,
+    Route,
 } from 'react-router-dom'
-
+import history from './history'
 import EventOfADay from './EventOfADay'
 import SearchEvents from './Events'
 import SignIn from './SignIn'
@@ -19,7 +19,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Router>
+                <Router history={history}>
                     <div>
                         <div className="App">
                             <AppNavbar/>

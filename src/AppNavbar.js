@@ -1,6 +1,7 @@
 import React from 'react'
 import {
-    withRouter
+    withRouter,
+    Link
 } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {
@@ -23,14 +24,15 @@ import SignOutButton from './SignOutButton'
 import fest1 from './img/image-fest1.jpg';
 import fest2 from './img/image-fest2.jpg';
 import fest3 from './img/image-fest3.jpg';
+import logo from './img/logow.png'
 
 const AppNavbar = ({user}) => (
 
     <div>
         <Navbar inverse collapseOnSelect="false">
             <Navbar.Header>
-                <Navbar.Brand>
-                    <a href="/">Dreamers</a>
+                <Navbar.Brand >
+                    <a href="/" style={{"margin": "0px 5px 0px 0px", padding: "0px"}}><img src={logo} height={50} alt=""/></a>
                 </Navbar.Brand>
                 <Navbar.Toggle/>
             </Navbar.Header>
@@ -77,7 +79,6 @@ const AppNavbar = ({user}) => (
     </div>
 )
 
-
 export const Home = () => (
     <div>
         <h1>Trójmiejski Kalendarz Imprez</h1>
@@ -106,7 +107,7 @@ export const Home = () => (
                         <Image style={{margin: "0 auto"}} width={1200} src={fest3} responsive/>
                         <Carousel.Caption>
                             <div style={{"backgroundColor": "rgba(0,0,0,0.9)", padding: "0px"}}>
-                                <h2 style={{color: "rgb(250, 175, 24)"}}>Nie czekaj i z nami planuj!</h2>
+                                <h2 style={{color: "rgb(250, 175, 24)"}}><Link to="/signin">Zaloguj się</Link> i z nami planuj!</h2>
                             </div>
                         </Carousel.Caption>
                     </Carousel.Item>
