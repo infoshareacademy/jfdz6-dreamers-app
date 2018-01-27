@@ -8,6 +8,7 @@ import {
     Col,
     Image
 } from 'react-bootstrap'
+import {BeatLoader} from 'react-spinners';
 
 import './Events.css'
 
@@ -117,7 +118,14 @@ class Events extends React.Component {
                     }
 
                     {
-                        this.props.events.getting && <p>Getting events...</p>
+                        this.props.events.getting &&
+                        <div className='sweet-loading EventOfADay_loader'>
+                            <BeatLoader
+                                color={'rgb(250, 175, 24)'}
+                                loading={this.state.loading}
+                                size={30}
+                            />
+                        </div>
                     }
                 </Row>
                 <Row className="show-grid">
