@@ -71,6 +71,16 @@ class EventOfADay extends Component {
                     <h2>Wydarzenie Dnia</h2>
                 </Row>
 
+                <Row className="show-grid">
+                    {
+                        this.state.error && <p>{this.state.error.message}</p>
+                    }
+
+                    {
+                        this.props.eventofaday.getting && <p>Getting events...</p>
+                    }
+                </Row>
+
                 {bestEvent &&
                 <div className="EventOfADay_main">
                     <Row className="show-grid">
