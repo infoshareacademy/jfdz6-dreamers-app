@@ -6,8 +6,7 @@ import {
     Grid,
     Row,
     Col,
-    Image,
-    Well,
+    Image
 } from 'react-bootstrap'
 
 import './Events.css'

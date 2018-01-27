@@ -26,18 +26,18 @@ class EventOfADay extends Component {
     }
 
     componentDidMount(){
-      this.props.getEventOfADay('a');
+        this.props.getEventOfADay('a');
     }
 
 
-  componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         const {eventofaday} = nextProps; //destructuring
 
         if (eventofaday.data && eventofaday.data.length > 0) {
             const maximumVipTicketPrice = eventofaday.data.reduce(
                 (max, event) =>
-                    parseInt(event.tickets.endTicket) > max ?
-                        parseInt(event.tickets.endTicket) : max
+                    parseInt(event.tickets.endTicket,10) > max ?
+                        parseInt(event.tickets.endTicket,10) : max
                 , 0)
             const myBestEvent = (eventofaday.data)
                 .filter(
@@ -86,7 +86,7 @@ class EventOfADay extends Component {
                                             .map(
                                                 attachment =>
                                                     <Carousel.Item>
-                                                        <img src={attachment.fileName}
+                                                        <img src={attachment.fileName} alt=""
                                                              className="responsive, EventOfADay_image"/>
                                                     </Carousel.Item>
                                             )
@@ -124,9 +124,9 @@ class EventOfADay extends Component {
                             <Col xs={12} sm={6}>
                                 <p>Liczba osób, która zapisała się na wydarzenie: 0</p>
                             </Col>
-                          <Col xs={12} sm={6}>
-                            <Button bsStyle="success">Zapisz wydarzenie</Button>
-                          </Col>
+                            <Col xs={12} sm={6}>
+                                <Button bsStyle="success">Zapisz wydarzenie</Button>
+                            </Col>
                         </Col>
                     </Row>
                 </div>
