@@ -10,14 +10,20 @@ export const getEvents = ( dateFrom, dateTo ) => dispatch => {
     if(dateFrom===null){
         dateFrom = new Date();
     }
+    else{
+        dateFrom = new Date(+dateFrom + 86400000)
+    }
     if(dateTo===null){
         dateTo = new Date()
+    }
+    else{
+        dateTo = new Date(+dateTo + 86400000)
     }
     if(dateTo.getTime() < dateFrom.getTime()){
         dateTo = new Date(+dateFrom + 86400000)
     }
-    console.log('Od : ',dateFrom.toJSON().slice(0,10));
-    console.log('Do : ', dateTo.toJSON().slice(0,10));
+    //console.log('Od : ',dateFrom.toJSON().slice(0,10));
+    //console.log('Do : ', dateTo.toJSON().slice(0,10));
 
 
 
