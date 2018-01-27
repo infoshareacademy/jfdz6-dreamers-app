@@ -1,6 +1,7 @@
 import React from 'react'
 import {
-    withRouter
+    withRouter,
+    Link
 } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {
@@ -106,7 +107,7 @@ export const Home = () => (
                         <Image style={{margin: "0 auto"}} width={1200} src={fest3} responsive/>
                         <Carousel.Caption>
                             <div style={{"backgroundColor": "rgba(0,0,0,0.9)", padding: "0px"}}>
-                                <h2 style={{color: "rgb(250, 175, 24)"}}>Zaloguj się i z nami planuj!</h2>
+                                <h2 style={{color: "rgb(250, 175, 24)"}}><Link to="/signin">Zaloguj się</Link> i z nami planuj!</h2>
                             </div>
                         </Carousel.Caption>
                     </Carousel.Item>
