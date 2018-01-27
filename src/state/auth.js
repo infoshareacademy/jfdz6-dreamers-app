@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import history from '../history'
 
 const SET_USER = 'auth/SET_USER'
 const ERROR = 'auth/ERROR'
@@ -8,6 +9,8 @@ const initialState = {
     data: null,
     error: null
 }
+
+let user = () => {firebase.auth().currentUser(email)
 
 let unsubscribe = null
 export const enableSync = () => dispatch => {
@@ -29,22 +32,28 @@ export const signUp = (email, password) => dispatch => {
     firebase.auth().createUserWithEmailAndPassword(
         email,
         password
+    ).then(
+      history.push('/')
     ).catch(
         error => dispatch({ type: ERROR, error })
     )
 }
 
-export const signIn = (email, password) => dispatch => {
+export const signIn = (email, password, user) => dispatch => {
     firebase.auth().signInWithEmailAndPassword(
         email,
         password
-    ).catch(
+    ).then(history.push('/')
+  )
+      .catch(
         error => dispatch({ type: ERROR, error })
     )
 }
 
 export const signOut = () => dispatch => {
-    firebase.auth().signOut().catch(
+    firebase.auth().signOut().then(
+      history.push('/')
+    ).catch(
         error => dispatch({ type: ERROR, error })
     )
 }

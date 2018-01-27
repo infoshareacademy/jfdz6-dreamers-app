@@ -5,6 +5,7 @@ import events from './state/events'
 import eventofaday from './state/eventofaday'
 import firebase from 'firebase'
 import auth,  { enableSync } from './state/auth'
+import history from "./history";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -27,12 +28,13 @@ const enhancer = composeEnhancers(
 const reducer = combineReducers({
     auth,
     events,
-    eventofaday
+    eventofaday,
+    history
 })
 
 const store = createStore(
     reducer,
-    enhancer
+    enhancer,
 )
 
 store.dispatch({ type: 'RESET' })
