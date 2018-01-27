@@ -9,7 +9,8 @@ import {
     Carousel,
     Button,
     Well,
-} from 'react-bootstrap'
+} from 'react-bootstrap';
+import {BeatLoader} from 'react-spinners';
 
 import './EventOfADay.css'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -25,7 +26,7 @@ class EventOfADay extends Component {
         bestEvent: null
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getEventOfADay('a');
     }
 
@@ -36,8 +37,8 @@ class EventOfADay extends Component {
         if (eventofaday.data && eventofaday.data.length > 0) {
             const maximumVipTicketPrice = eventofaday.data.reduce(
                 (max, event) =>
-                    parseInt(event.tickets.endTicket,10) > max ?
-                        parseInt(event.tickets.endTicket,10) : max
+                    parseInt(event.tickets.endTicket, 10) > max ?
+                        parseInt(event.tickets.endTicket, 10) : max
                 , 0)
             const myBestEvent = (eventofaday.data)
                 .filter(
@@ -72,13 +73,22 @@ class EventOfADay extends Component {
                 </Row>
 
                 <Row className="show-grid">
+                    <Col xs={12} sm={12} md={12}>
                     {
                         this.state.error && <p>{this.state.error.message}</p>
                     }
 
                     {
-                        this.props.eventofaday.getting && <p>Getting events...</p>
+                        this.props.eventofaday.getting &&
+                        <div className='sweet-loading EventOfADay_loader'>
+                            <BeatLoader
+                                color={'rgb(250, 175, 24)'}
+                                loading={this.state.loading}
+                                size={30}
+                            />
+                        </div>
                     }
+                    </Col>
                 </Row>
 
                 {bestEvent &&
@@ -105,7 +115,8 @@ class EventOfADay extends Component {
                             </a>
                         </Col>
                         <Col xs={12} sm={12} md={3} className="EventOfADay_info">
-                            <Well style={{"background": "transparent", "border": "1px solid rgb(250, 175, 24)"}} bsSize="large" className="transparent">
+                            <Well style={{"background": "transparent", "border": "1px solid rgb(250, 175, 24)"}}
+                                  bsSize="large" className="transparent">
                                 <p>Start: {moment(bestEvent.startDate).format('H:mm')}</p>
                                 <p>Koniec: {moment(bestEvent.endDate).format('H:mm')}</p>
                                 <p>Miejsce: {bestEvent.place.name}</p>
