@@ -6,8 +6,6 @@ import {
     Grid,
     Row,
     Col,
-    Image,
-    Well,
 } from 'react-bootstrap'
 
 import './SignIn.css'

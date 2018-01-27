@@ -1,4 +1,4 @@
-.SignIn_box {
+.SignUp_box {
     margin: 15px;
     padding: 25px 0 5px 0;
     color: black;
@@ -7,16 +7,16 @@
 
 }
 
-.SignIn_AuthForm > form {
+.SignUp_AuthForm > form {
     font-weight: bold;
     font-size: 1.4em;
 }
 
-.SignIn_AuthForm > form > p {
+.SignUp_AuthForm > form > p {
     color: red;
 }
 
-.SignIn_AuthForm > form > input {
+.SignUp_AuthForm > form > input {
     margin: 10px auto 25px auto;
     display: block;
     background-color: white;
@@ -24,7 +24,7 @@
     height: 2em;
     width: 20em;
 }
-.SignIn_AuthForm > form > button {
+.SignUp_AuthForm > form > button {
     margin: 10px auto 30px auto;
     display: block;
     background-color: black;
@@ -35,7 +35,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .SignIn_AuthForm > form > input {
+    .SignUp_AuthForm > form > input {
         width: 90%;
     }
 }
