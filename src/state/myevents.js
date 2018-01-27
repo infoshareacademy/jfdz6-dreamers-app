@@ -15,7 +15,7 @@ const initialState = {
 
 export const getMyEvents = () => dispatch => {
 //saving data
-    /*
+/*
     let ref = firebase.database().ref()
     var usersRef = ref.child("users");
     usersRef.set({
@@ -28,10 +28,17 @@ export const getMyEvents = () => dispatch => {
                 events: [
                     "44697",
                     "45026"
-                ]}
+                ]},
+        przemek: {
+            events: [
+                "44397",
+                "44226"
+            ]}
 
             });
 */
+    //console.log(firebase.auth())
+
     let data
     let savedEvents = []
 

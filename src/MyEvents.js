@@ -28,6 +28,7 @@ class MyEvents extends Component {
                 <Row className="show-grid">
                     <h1>my events</h1>
                 </Row>
+
                 <Row className="show-grid">
                     <Col sm={8} smOffset={2} md={6} mdOffset={3}>
 
