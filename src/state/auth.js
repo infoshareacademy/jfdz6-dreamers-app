@@ -10,7 +10,6 @@ const initialState = {
     error: null,
 }
 
-
 let unsubscribe = null
 export const enableSync = () => dispatch => {
     dispatch(disableSync())
