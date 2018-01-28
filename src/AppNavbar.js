@@ -50,7 +50,6 @@ const AppNavbar = ({user}) => (
               <NavItem>Wyszukiwarka</NavItem>
             </LinkContainer>
           }
-
           {/*{*/}
           {/*user &&*/}
           {/*<LinkContainer to="/myevents">*/}
